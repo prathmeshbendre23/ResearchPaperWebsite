@@ -98,10 +98,34 @@ export default function InquiryForm() {
   };
 
   return (
-    <section id="inquiry" className="py-24 relative bg-academic-950/90 scientific-grid-bg w-full overflow-hidden" aria-label="Inquiry Form">
+    <section
+      id="inquiry"
+      className="py-24 relative w-full overflow-hidden"
+      aria-label="Inquiry Form"
+      style={{ background: 'rgba(248, 249, 255, 0.75)' }}
+    >
       {/* Background ambient lighting */}
-      <div className="absolute top-1/3 left-10 w-[700px] h-[400px] bg-cyan-500/5 rounded-full blur-[160px] pointer-events-none" />
-      <div className="absolute bottom-10 right-10 w-[600px] h-[400px] bg-indigo-500/5 rounded-full blur-[150px] pointer-events-none" />
+      <div
+        className="absolute top-1/3 left-10 pointer-events-none"
+        style={{
+          width: '700px',
+          height: '400px',
+          borderRadius: '50%',
+          background: 'radial-gradient(ellipse, rgba(41,72,216,0.08) 0%, transparent 70%)',
+          filter: 'blur(100px)',
+        }}
+      />
+      <div
+        className="absolute bottom-10 right-10 pointer-events-none"
+        style={{
+          width: '600px',
+          height: '400px',
+          borderRadius: '50%',
+          background: 'radial-gradient(ellipse, rgba(139,109,255,0.07) 0%, transparent 70%)',
+          filter: 'blur(90px)',
+        }}
+      />
+      <div className="absolute inset-0 scientific-grid-light-bg opacity-50 pointer-events-none" />
 
       <SectionContainer>
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 xl:gap-14 items-start">
@@ -110,51 +134,51 @@ export default function InquiryForm() {
           <div className="lg:col-span-5 xl:col-span-5 flex flex-col justify-between space-y-6">
             <div>
               {/* Badge */}
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/25 text-cyan-300 text-xs font-mono tracking-wider uppercase mb-5">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-royalBlue-500/8 border border-royalBlue-500/20 text-royalBlue-500 text-xs font-mono tracking-wider uppercase mb-5">
                 <Sparkles className="w-3.5 h-3.5" />
                 <span>Confidential Consultation</span>
               </div>
 
               {/* Title */}
-              <h2 className="font-display font-bold text-3xl sm:text-4xl lg:text-[40px] text-white tracking-tight leading-tight mb-5">
+              <h2 className="font-display font-bold text-3xl sm:text-4xl lg:text-[40px] text-navy-900 tracking-tight leading-tight mb-5">
                 Start Your <br className="hidden sm:inline" />
-                <span className="bg-gradient-to-r from-cyan-400 to-indigo-400 bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-royalBlue-500 to-violet-500 bg-clip-text text-transparent">
                   Publication Journey
                 </span>
               </h2>
 
               {/* Description */}
-              <p className="text-slate-300 text-sm sm:text-base leading-relaxed mb-8 font-normal">
+              <p className="text-navy-600 text-sm sm:text-base leading-relaxed mb-8 font-normal">
                 Submit your manuscript details for an appraisal. Our academic advisory evaluates your research for structural clarity, methodological rigor, and target journal scope alignment.
               </p>
 
               {/* Key Assurances */}
               <div className="space-y-4 mb-8">
-                <div className="flex items-start gap-3.5 p-4 rounded-xl bg-academic-900/60 border border-slate-800/80">
-                  <ShieldCheck className="w-5 h-5 text-cyan-400 shrink-0 mt-0.5" />
+                <div className="flex items-start gap-3.5 p-4 rounded-xl bg-white/80 border border-navy-200/70 shadow-card-light backdrop-blur-sm">
+                  <ShieldCheck className="w-5 h-5 text-royalBlue-500 shrink-0 mt-0.5" />
                   <div>
-                    <h4 className="text-sm font-semibold text-slate-200">Strict Non-Disclosure & Ethics</h4>
-                    <p className="text-xs text-slate-400 mt-1">
+                    <h4 className="text-sm font-semibold text-navy-800">Strict Non-Disclosure &amp; Ethics</h4>
+                    <p className="text-xs text-navy-500 mt-1">
                       Your original manuscripts, ideas, and data remain strictly confidential under rigorous academic NDA standards.
                     </p>
                   </div>
                 </div>
 
-                <div className="flex items-start gap-3.5 p-4 rounded-xl bg-academic-900/60 border border-slate-800/80">
-                  <CheckCircle className="w-5 h-5 text-indigo-400 shrink-0 mt-0.5" />
+                <div className="flex items-start gap-3.5 p-4 rounded-xl bg-white/80 border border-navy-200/70 shadow-card-light backdrop-blur-sm">
+                  <CheckCircle className="w-5 h-5 text-violet-500 shrink-0 mt-0.5" />
                   <div>
-                    <h4 className="text-sm font-semibold text-slate-200">Independent Expert Review</h4>
-                    <p className="text-xs text-slate-400 mt-1">
+                    <h4 className="text-sm font-semibold text-navy-800">Independent Expert Review</h4>
+                    <p className="text-xs text-navy-500 mt-1">
                       Constructive evaluation by {siteConfig.consultant.name} ({siteConfig.consultant.qualification}) to enhance peer-review acceptance.
                     </p>
                   </div>
                 </div>
 
-                <div className="flex items-start gap-3.5 p-4 rounded-xl bg-academic-900/60 border border-slate-800/80">
-                  <Clock className="w-5 h-5 text-emerald-400 shrink-0 mt-0.5" />
+                <div className="flex items-start gap-3.5 p-4 rounded-xl bg-white/80 border border-navy-200/70 shadow-card-light backdrop-blur-sm">
+                  <Clock className="w-5 h-5 text-emerald-500 shrink-0 mt-0.5" />
                   <div>
-                    <h4 className="text-sm font-semibold text-slate-200">Response within 24–48 Hours</h4>
-                    <p className="text-xs text-slate-400 mt-1">
+                    <h4 className="text-sm font-semibold text-navy-800">Response within 24–48 Hours</h4>
+                    <p className="text-xs text-navy-500 mt-1">
                       You will receive a structured response with recommended next steps and journal recommendations.
                     </p>
                   </div>
@@ -163,16 +187,16 @@ export default function InquiryForm() {
             </div>
 
             {/* Direct WhatsApp Callout Card */}
-            <div className="p-5 rounded-xl bg-gradient-to-br from-emerald-950/40 to-academic-900/70 border border-emerald-500/25 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div className="p-5 rounded-xl bg-emerald-500/8 border border-emerald-500/25 flex flex-col sm:flex-row items-center justify-between gap-4">
               <div className="text-left">
-                <div className="text-xs font-semibold text-emerald-300">Need Immediate Advice?</div>
-                <div className="text-[11px] text-slate-400 mt-0.5">Chat directly with the academic consultant</div>
+                <div className="text-xs font-semibold text-emerald-800">Need Immediate Advice?</div>
+                <div className="text-[11px] text-navy-500 mt-0.5">Chat directly with the academic consultant</div>
               </div>
               <a
                 href={getWhatsAppUrl("Hello, I would like to consult directly regarding my research paper.")}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg text-xs font-semibold text-emerald-300 bg-emerald-500/15 hover:bg-emerald-500/25 border border-emerald-500/30 transition-all shrink-0"
+                className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg text-xs font-semibold text-emerald-700 bg-emerald-500/15 hover:bg-emerald-500/25 border border-emerald-500/30 transition-all shrink-0"
               >
                 <MessageCircle className="w-4 h-4" />
                 <span>WhatsApp Directly</span>
@@ -182,38 +206,38 @@ export default function InquiryForm() {
 
           {/* Right Column: Interactive Form Card (58-60% on desktop) */}
           <div className="lg:col-span-7 xl:col-span-7 w-full">
-            <div className="rounded-2xl bg-academic-900/80 border border-cyan-500/20 p-6 sm:p-8 xl:p-10 shadow-2xl backdrop-blur-md">
+            <div className="rounded-2xl bg-white/90 border border-navy-200/80 p-6 sm:p-8 xl:p-10 shadow-card-light backdrop-blur-md">
           
           {/* Success State Banner */}
           {submissionStatus?.success && (
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
-              className="p-6 rounded-xl bg-emerald-950/60 border border-emerald-500/40 text-emerald-200 mb-8"
+              className="p-6 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-800 mb-8"
               role="status"
               aria-live="polite"
             >
               <div className="flex items-start gap-4">
-                <CheckCircle className="w-6 h-6 text-emerald-400 shrink-0 mt-0.5" />
+                <CheckCircle className="w-6 h-6 text-emerald-600 shrink-0 mt-0.5" />
                 <div className="flex-1">
-                  <h3 className="font-display font-semibold text-lg text-white mb-1">
+                  <h3 className="font-display font-semibold text-lg text-emerald-900 mb-1">
                     Inquiry Submitted Successfully
                   </h3>
-                  <p className="text-sm text-emerald-200 leading-relaxed mb-3">
+                  <p className="text-sm text-emerald-700 leading-relaxed mb-3">
                     {submissionStatus.message}
                   </p>
                   {submissionStatus.referenceId && (
-                    <div className="inline-block px-3 py-1 rounded bg-emerald-900/80 border border-emerald-500/30 text-xs font-mono text-emerald-300">
+                    <div className="inline-block px-3 py-1 rounded bg-emerald-100 border border-emerald-300 text-xs font-mono text-emerald-800">
                       Tracking Reference: <strong>{submissionStatus.referenceId}</strong>
                     </div>
                   )}
-                  <div className="mt-4 pt-4 border-t border-emerald-800/60 flex items-center justify-between">
-                    <span className="text-xs text-emerald-300/80">Need faster response?</span>
+                  <div className="mt-4 pt-4 border-t border-emerald-200 flex items-center justify-between">
+                    <span className="text-xs text-emerald-700">Need faster response?</span>
                     <a
                       href={getWhatsAppUrl(`Hello, I have submitted inquiry ${submissionStatus.referenceId || ''}. I would like to discuss it.`)}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 text-xs font-medium text-emerald-400 hover:text-emerald-300 underline"
+                      className="inline-flex items-center gap-1.5 text-xs font-semibold text-emerald-700 hover:text-emerald-800 underline"
                     >
                       <MessageCircle className="w-3.5 h-3.5" />
                       Notify on WhatsApp
@@ -227,10 +251,10 @@ export default function InquiryForm() {
           {/* Error Banner */}
           {submissionStatus && !submissionStatus.success && (
             <div
-              className="p-4 rounded-xl bg-red-950/60 border border-red-500/40 text-red-200 mb-6 flex items-start gap-3"
+              className="p-4 rounded-xl bg-red-50 border border-red-200 text-red-700 mb-6 flex items-start gap-3"
               role="alert"
             >
-              <AlertCircle className="w-5 h-5 text-red-400 shrink-0 mt-0.5" />
+              <AlertCircle className="w-5 h-5 text-red-500 shrink-0 mt-0.5" />
               <p className="text-sm leading-relaxed">{submissionStatus.message}</p>
             </div>
           )}
@@ -241,11 +265,11 @@ export default function InquiryForm() {
             {/* Row 1: Name and Email */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               <div>
-                <label htmlFor="fullName" className="block text-xs font-medium text-slate-300 mb-2">
-                  Full Name <span className="text-cyan-400">*</span>
+                <label htmlFor="fullName" className="block text-xs font-medium text-navy-700 mb-2">
+                  Full Name <span className="text-royalBlue-500">*</span>
                 </label>
                 <div className="relative">
-                  <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
+                  <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-navy-400">
                     <User className="w-4 h-4" />
                   </div>
                   <input
@@ -257,22 +281,22 @@ export default function InquiryForm() {
                     placeholder="e.g. Dr. Jane Smith"
                     aria-invalid={!!errors.fullName}
                     disabled={isSubmitting}
-                    className={`w-full pl-10 pr-4 py-3 rounded-xl bg-academic-950/70 border text-sm text-slate-100 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-cyan-500/50 transition-all ${
-                      errors.fullName ? 'border-red-500/60 bg-red-950/10' : 'border-slate-800 focus:border-cyan-500/50'
+                    className={`w-full pl-10 pr-4 py-3 rounded-xl bg-pearl-100/90 border text-sm text-navy-900 placeholder-navy-300 focus:outline-none focus:ring-2 focus:ring-royalBlue-500/30 transition-all ${
+                      errors.fullName ? 'border-red-500/60 bg-red-50/50' : 'border-navy-200 focus:border-royalBlue-500/50'
                     }`}
                   />
                 </div>
                 {errors.fullName && (
-                  <p className="text-xs text-red-400 mt-1.5">{errors.fullName}</p>
+                  <p className="text-xs text-red-500 mt-1.5">{errors.fullName}</p>
                 )}
               </div>
 
               <div>
-                <label htmlFor="email" className="block text-xs font-medium text-slate-300 mb-2">
-                  Academic / Professional Email <span className="text-cyan-400">*</span>
+                <label htmlFor="email" className="block text-xs font-medium text-navy-700 mb-2">
+                  Academic / Professional Email <span className="text-royalBlue-500">*</span>
                 </label>
                 <div className="relative">
-                  <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
+                  <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-navy-400">
                     <Mail className="w-4 h-4" />
                   </div>
                   <input
@@ -284,13 +308,13 @@ export default function InquiryForm() {
                     placeholder="e.g. scholar@university.edu"
                     aria-invalid={!!errors.email}
                     disabled={isSubmitting}
-                    className={`w-full pl-10 pr-4 py-3 rounded-xl bg-academic-950/70 border text-sm text-slate-100 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-cyan-500/50 transition-all ${
-                      errors.email ? 'border-red-500/60 bg-red-950/10' : 'border-slate-800 focus:border-cyan-500/50'
+                    className={`w-full pl-10 pr-4 py-3 rounded-xl bg-pearl-100/90 border text-sm text-navy-900 placeholder-navy-300 focus:outline-none focus:ring-2 focus:ring-royalBlue-500/30 transition-all ${
+                      errors.email ? 'border-red-500/60 bg-red-50/50' : 'border-navy-200 focus:border-royalBlue-500/50'
                     }`}
                   />
                 </div>
                 {errors.email && (
-                  <p className="text-xs text-red-400 mt-1.5">{errors.email}</p>
+                  <p className="text-xs text-red-500 mt-1.5">{errors.email}</p>
                 )}
               </div>
             </div>
@@ -298,11 +322,11 @@ export default function InquiryForm() {
             {/* Row 2: Phone Number & Research Area */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               <div>
-                <label htmlFor="phone" className="block text-xs font-medium text-slate-300 mb-2">
-                  Contact Number (WhatsApp enabled) <span className="text-cyan-400">*</span>
+                <label htmlFor="phone" className="block text-xs font-medium text-navy-700 mb-2">
+                  Contact Number (WhatsApp enabled) <span className="text-royalBlue-500">*</span>
                 </label>
                 <div className="relative">
-                  <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
+                  <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-navy-400">
                     <Phone className="w-4 h-4" />
                   </div>
                   <input
@@ -314,19 +338,19 @@ export default function InquiryForm() {
                     placeholder="e.g. +91 98765 43210"
                     aria-invalid={!!errors.phone}
                     disabled={isSubmitting}
-                    className={`w-full pl-10 pr-4 py-3 rounded-xl bg-academic-950/70 border text-sm text-slate-100 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-cyan-500/50 transition-all ${
-                      errors.phone ? 'border-red-500/60 bg-red-950/10' : 'border-slate-800 focus:border-cyan-500/50'
+                    className={`w-full pl-10 pr-4 py-3 rounded-xl bg-pearl-100/90 border text-sm text-navy-900 placeholder-navy-300 focus:outline-none focus:ring-2 focus:ring-royalBlue-500/30 transition-all ${
+                      errors.phone ? 'border-red-500/60 bg-red-50/50' : 'border-navy-200 focus:border-royalBlue-500/50'
                     }`}
                   />
                 </div>
                 {errors.phone && (
-                  <p className="text-xs text-red-400 mt-1.5">{errors.phone}</p>
+                  <p className="text-xs text-red-500 mt-1.5">{errors.phone}</p>
                 )}
               </div>
 
               <div>
-                <label htmlFor="researchArea" className="block text-xs font-medium text-slate-300 mb-2">
-                  Primary Research Area <span className="text-cyan-400">*</span>
+                <label htmlFor="researchArea" className="block text-xs font-medium text-navy-700 mb-2">
+                  Primary Research Area <span className="text-royalBlue-500">*</span>
                 </label>
                 <select
                   id="researchArea"
@@ -335,8 +359,8 @@ export default function InquiryForm() {
                   onChange={handleChange}
                   aria-invalid={!!errors.researchArea}
                   disabled={isSubmitting}
-                  className={`w-full px-4 py-3 rounded-xl bg-academic-950 border text-sm text-slate-200 focus:outline-none focus:ring-2 focus:ring-cyan-500/50 transition-all ${
-                    errors.researchArea ? 'border-red-500/60 bg-red-950/10' : 'border-slate-800 focus:border-cyan-500/50'
+                  className={`w-full px-4 py-3 rounded-xl bg-pearl-100/90 border text-sm text-navy-900 focus:outline-none focus:ring-2 focus:ring-royalBlue-500/30 transition-all ${
+                    errors.researchArea ? 'border-red-500/60 bg-red-50/50' : 'border-navy-200 focus:border-royalBlue-500/50'
                   }`}
                 >
                   <option value="">Select your discipline...</option>
@@ -348,14 +372,14 @@ export default function InquiryForm() {
                   <option value="Other">Other / Interdisciplinary Discipline</option>
                 </select>
                 {errors.researchArea && (
-                  <p className="text-xs text-red-400 mt-1.5">{errors.researchArea}</p>
+                  <p className="text-xs text-red-500 mt-1.5">{errors.researchArea}</p>
                 )}
               </div>
             </div>
 
             {/* Row 3: Service Selection */}
             <div>
-              <label htmlFor="serviceNeeded" className="block text-xs font-medium text-slate-300 mb-2">
+              <label htmlFor="serviceNeeded" className="block text-xs font-medium text-navy-700 mb-2">
                 Service Required
               </label>
               <select
@@ -364,7 +388,7 @@ export default function InquiryForm() {
                 value={formData.serviceNeeded}
                 onChange={handleChange}
                 disabled={isSubmitting}
-                className="w-full px-4 py-3 rounded-xl bg-academic-950 border border-slate-800 text-sm text-slate-200 focus:outline-none focus:ring-2 focus:ring-cyan-500/50 transition-all"
+                className="w-full px-4 py-3 rounded-xl bg-pearl-100/90 border border-navy-200 text-sm text-navy-900 focus:outline-none focus:ring-2 focus:ring-royalBlue-500/30 focus:border-royalBlue-500/50 transition-all"
               >
                 {servicesData.map((svc) => (
                   <option key={svc.id} value={svc.title}>
@@ -377,11 +401,11 @@ export default function InquiryForm() {
 
             {/* Row 4: Paper Title */}
             <div>
-              <label htmlFor="paperTitle" className="block text-xs font-medium text-slate-300 mb-2">
-                Tentative Paper Title or Topic <span className="text-cyan-400">*</span>
+              <label htmlFor="paperTitle" className="block text-xs font-medium text-navy-700 mb-2">
+                Tentative Paper Title or Topic <span className="text-royalBlue-500">*</span>
               </label>
               <div className="relative">
-                <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
+                <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-navy-400">
                   <FileText className="w-4 h-4" />
                 </div>
                 <input
@@ -393,20 +417,20 @@ export default function InquiryForm() {
                   placeholder="e.g. Deep Reinforcement Learning for Wireless Sensor Optimizations"
                   aria-invalid={!!errors.paperTitle}
                   disabled={isSubmitting}
-                  className={`w-full pl-10 pr-4 py-3 rounded-xl bg-academic-950/70 border text-sm text-slate-100 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-cyan-500/50 transition-all ${
-                    errors.paperTitle ? 'border-red-500/60 bg-red-950/10' : 'border-slate-800 focus:border-cyan-500/50'
+                  className={`w-full pl-10 pr-4 py-3 rounded-xl bg-pearl-100/90 border text-sm text-navy-900 placeholder-navy-300 focus:outline-none focus:ring-2 focus:ring-royalBlue-500/30 transition-all ${
+                    errors.paperTitle ? 'border-red-500/60 bg-red-50/50' : 'border-navy-200 focus:border-royalBlue-500/50'
                   }`}
                 />
               </div>
               {errors.paperTitle && (
-                <p className="text-xs text-red-400 mt-1.5">{errors.paperTitle}</p>
+                <p className="text-xs text-red-500 mt-1.5">{errors.paperTitle}</p>
               )}
             </div>
 
             {/* Row 5: Message / Requirements */}
             <div>
-              <label htmlFor="message" className="block text-xs font-medium text-slate-300 mb-2">
-                Requirements, Target Journal, or Abstract Details <span className="text-cyan-400">*</span>
+              <label htmlFor="message" className="block text-xs font-medium text-navy-700 mb-2">
+                Requirements, Target Journal, or Abstract Details <span className="text-royalBlue-500">*</span>
               </label>
               <textarea
                 id="message"
@@ -417,12 +441,12 @@ export default function InquiryForm() {
                 placeholder="Briefly describe your current manuscript status, target submission deadline, indexing goals (Scopus, SCI, etc.), or specific support needed..."
                 aria-invalid={!!errors.message}
                 disabled={isSubmitting}
-                className={`w-full px-4 py-3 rounded-xl bg-academic-950/70 border text-sm text-slate-100 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-cyan-500/50 transition-all resize-y ${
-                  errors.message ? 'border-red-500/60 bg-red-950/10' : 'border-slate-800 focus:border-cyan-500/50'
+                className={`w-full px-4 py-3 rounded-xl bg-pearl-100/90 border text-sm text-navy-900 placeholder-navy-300 focus:outline-none focus:ring-2 focus:ring-royalBlue-500/30 transition-all resize-y ${
+                  errors.message ? 'border-red-500/60 bg-red-50/50' : 'border-navy-200 focus:border-royalBlue-500/50'
                 }`}
               />
               {errors.message && (
-                <p className="text-xs text-red-400 mt-1.5">{errors.message}</p>
+                <p className="text-xs text-red-500 mt-1.5">{errors.message}</p>
               )}
             </div>
 
@@ -431,7 +455,7 @@ export default function InquiryForm() {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-3.5 rounded-xl font-semibold text-sm text-white bg-gradient-to-r from-cyan-500 to-indigo-600 hover:from-cyan-400 hover:to-indigo-500 shadow-glow-cyan transition-all disabled:opacity-50 disabled:cursor-not-allowed transform active:scale-95"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-3.5 rounded-xl font-semibold text-sm text-white bg-gradient-to-r from-royalBlue-500 to-violet-500 hover:from-royalBlue-400 hover:to-violet-400 shadow-glow-blue transition-all disabled:opacity-50 disabled:cursor-not-allowed transform active:scale-95"
               >
                 {isSubmitting ? (
                   <>
@@ -451,7 +475,7 @@ export default function InquiryForm() {
                 href={getWhatsAppUrl("Hello, I would like to quickly discuss my research paper inquiry directly.")}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-xs font-medium text-emerald-400 hover:text-emerald-300 px-4 py-2 rounded-lg border border-emerald-500/20 hover:border-emerald-500/40 transition-colors"
+                className="inline-flex items-center gap-2 text-xs font-semibold text-emerald-700 hover:text-emerald-800 px-4 py-2 rounded-lg border border-emerald-500/25 hover:border-emerald-500/40 bg-emerald-500/8 transition-colors"
               >
                 <MessageCircle className="w-4 h-4" />
                 <span>Prefer instant chat? Connect on WhatsApp</span>

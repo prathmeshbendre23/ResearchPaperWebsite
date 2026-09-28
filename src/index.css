@@ -2,114 +2,345 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ═══════════════════════════════════════════════════════════════════
+   BASE — Light premium academic theme
+═══════════════════════════════════════════════════════════════════ */
 @layer base {
   :root {
-    color-scheme: dark;
+    color-scheme: light;
+    --clr-bg:        #F8F9FF;
+    --clr-navy:      #0B1B4A;
+    --clr-royal:     #2948D8;
+    --clr-soft-blue: #6D8CFF;
+    --clr-violet:    #8B6DFF;
+    --clr-blob-1:    rgba(41,  72, 216, 0.11);
+    --clr-blob-2:    rgba(139,109, 255, 0.09);
+    --clr-blob-3:    rgba(109,140, 255, 0.08);
   }
-  
+
   html {
     scroll-behavior: smooth;
   }
 
   body {
-    background-color: #030712;
-    color: #e2e8f0;
+    background-color: var(--clr-bg);
+    color: var(--clr-navy);
     font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
   }
 
   /* Accessible focus rings */
   :focus-visible {
-    outline: 2px solid #38bdf8;
+    outline: 2px solid var(--clr-royal);
     outline-offset: 3px;
   }
 }
 
-/* Custom subtle scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
+/* ═══════════════════════════════════════════════════════════════════
+   SCROLLBAR — Light theme
+═══════════════════════════════════════════════════════════════════ */
+::-webkit-scrollbar          { width: 7px; }
+::-webkit-scrollbar-track    { background: #EFF1FB; }
+::-webkit-scrollbar-thumb    { background: #A8B6D9; border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: #7A90C3; }
+
+/* ═══════════════════════════════════════════════════════════════════
+   LIVING BACKGROUND LAYERS
+═══════════════════════════════════════════════════════════════════ */
+
+/* Full-viewport fixed host */
+.living-bg-root {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
 }
 
-::-webkit-scrollbar-track {
-  background: #030712;
+/* Layer 1 — Gradient base */
+.living-bg-gradient {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(145deg, #FFFFFF 0%, #F8F9FF 35%, #F2EEFF 65%, #EDE9FF 100%);
 }
 
-::-webkit-scrollbar-thumb {
-  background: #1e293b;
-  border-radius: 4px;
+/* Layer 2 — Glow blobs */
+.living-bg-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  will-change: transform;
+  /* Blob animation driven by JS translate via inline style */
 }
 
-::-webkit-scrollbar-thumb:hover {
-  background: #334155;
+.living-bg-blob-1 {
+  width: clamp(380px, 45vw, 720px);
+  height: clamp(280px, 35vw, 560px);
+  background: radial-gradient(ellipse, rgba(41, 72, 216, 0.14) 0%, rgba(41, 72, 216, 0.04) 60%, transparent 100%);
+  top: -8%;
+  left: -5%;
+  animation: blobShift 28s ease-in-out infinite;
 }
 
-/* Glass panel utilities */
+.living-bg-blob-2 {
+  width: clamp(300px, 40vw, 640px);
+  height: clamp(260px, 32vw, 520px);
+  background: radial-gradient(ellipse, rgba(139, 109, 255, 0.12) 0%, rgba(139, 109, 255, 0.03) 60%, transparent 100%);
+  top: 30%;
+  right: -8%;
+  animation: blobShift 36s ease-in-out infinite reverse;
+  animation-delay: -12s;
+}
+
+.living-bg-blob-3 {
+  width: clamp(260px, 36vw, 580px);
+  height: clamp(220px, 28vw, 440px);
+  background: radial-gradient(ellipse, rgba(109, 140, 255, 0.10) 0%, rgba(109, 140, 255, 0.02) 60%, transparent 100%);
+  bottom: 5%;
+  left: 25%;
+  animation: blobShift 44s ease-in-out infinite;
+  animation-delay: -22s;
+}
+
+/* Layer 4 — Orbital SVG host */
+.living-bg-orbitals {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  will-change: transform;
+}
+
+.orbital-ring {
+  position: absolute;
+  border-radius: 50%;
+  border-style: solid;
+  border-color: rgba(41, 72, 216, 0.06);
+  pointer-events: none;
+}
+
+.orbital-ring-1 {
+  width: min(80vw, 800px);
+  height: min(80vw, 800px);
+  border-width: 1px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(0deg);
+  animation: orbitalSpin 130s linear infinite;
+}
+
+.orbital-ring-2 {
+  width: min(55vw, 560px);
+  height: min(55vw, 560px);
+  border-width: 0.5px;
+  border-color: rgba(139, 109, 255, 0.05);
+  top: 40%;
+  left: 55%;
+  transform: translate(-50%, -50%) rotate(0deg);
+  animation: orbitalSpin 190s linear infinite reverse;
+}
+
+.orbital-ring-3 {
+  width: min(38vw, 380px);
+  height: min(38vw, 380px);
+  border-width: 0.5px;
+  border-color: rgba(109, 140, 255, 0.055);
+  top: 60%;
+  left: 40%;
+  transform: translate(-50%, -50%) rotate(45deg);
+  animation: orbitalSpin 90s linear infinite;
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   SCIENTIFIC GRID BACKGROUNDS
+═══════════════════════════════════════════════════════════════════ */
+
+/* Light grid (new sections) */
+.scientific-grid-light-bg {
+  background-size: 44px 44px;
+  background-image:
+    linear-gradient(to right,  rgba(41, 72, 216, 0.045) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(41, 72, 216, 0.045) 1px, transparent 1px);
+}
+
+/* Legacy dark grid (kept for dark sections) */
+.scientific-grid-bg {
+  background-size: 40px 40px;
+  background-image:
+    linear-gradient(to right,  rgba(56, 189, 248, 0.035) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(56, 189, 248, 0.035) 1px, transparent 1px);
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   GLASS UTILITIES — Light theme
+═══════════════════════════════════════════════════════════════════ */
+
 .academic-glass {
-  background: rgba(10, 20, 44, 0.65);
+  background: rgba(255, 255, 255, 0.78);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(56, 189, 248, 0.12);
+  border: 1px solid rgba(41, 72, 216, 0.12);
 }
 
 .academic-glass-subtle {
-  background: rgba(15, 31, 61, 0.4);
+  background: rgba(255, 255, 255, 0.55);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(41, 72, 216, 0.08);
 }
 
 .academic-glass-interactive {
-  background: rgba(10, 20, 44, 0.55);
+  background: rgba(255, 255, 255, 0.72);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
-  border: 1px solid rgba(56, 189, 248, 0.1);
+  border: 1px solid rgba(41, 72, 216, 0.10);
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .academic-glass-interactive:hover {
-  background: rgba(15, 31, 61, 0.75);
-  border-color: rgba(56, 189, 248, 0.35);
-  box-shadow: 0 10px 30px -10px rgba(56, 189, 248, 0.15), 0 0 20px 0 rgba(99, 102, 241, 0.1);
+  background: rgba(255, 255, 255, 0.92);
+  border-color: rgba(41, 72, 216, 0.28);
+  box-shadow:
+    0 10px 30px -8px rgba(41, 72, 216, 0.16),
+    0 0 20px 0   rgba(139, 109, 255, 0.09);
   transform: translateY(-2px);
 }
 
-/* Scientific background grid */
-.scientific-grid-bg {
-  background-size: 40px 40px;
-  background-image: 
-    linear-gradient(to right, rgba(56, 189, 248, 0.035) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(56, 189, 248, 0.035) 1px, transparent 1px);
+/* ═══════════════════════════════════════════════════════════════════
+   SECTION BACKGROUND UTILITIES
+═══════════════════════════════════════════════════════════════════ */
+
+.section-pearl {
+  background-color: rgba(248, 249, 255, 0.85);
 }
 
-/* Fluid full-width container utility */
+.section-pearl-alt {
+  background-color: rgba(255, 255, 255, 0.90);
+}
+
+.section-lavender {
+  background-color: rgba(237, 233, 255, 0.30);
+}
+
+.section-blue-tint {
+  background-color: rgba(219, 234, 254, 0.25);
+}
+
+/* Dark footer section */
+.section-deep {
+  background-color: #060d1d;
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   CARD SYSTEM — Light premium
+═══════════════════════════════════════════════════════════════════ */
+
+.academic-card {
+  background: rgba(255, 255, 255, 0.82);
+  border: 1px solid rgba(203, 213, 225, 0.80);
+  transition:
+    transform      0.28s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow     0.28s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color   0.28s cubic-bezier(0.16, 1, 0.3, 1),
+    background     0.28s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.academic-card:hover {
+  transform:    translateY(-4px) scale(1.01);
+  background:   rgba(255, 255, 255, 0.96);
+  border-color: rgba(41, 72, 216, 0.28);
+  box-shadow:
+    0 12px 36px -8px  rgba(41, 72, 216, 0.16),
+    0 0   24px  0     rgba(139, 109, 255, 0.09);
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   FLUID CONTAINER
+═══════════════════════════════════════════════════════════════════ */
+
 .fluid-container {
   width: 100%;
   max-width: none;
   margin-inline: auto;
-  padding-left: clamp(20px, 3vw, 56px);
+  padding-left:  clamp(20px, 3vw, 56px);
   padding-right: clamp(20px, 3vw, 56px);
 }
 
-/* Premium Academic Card Hover */
-.academic-card {
-  transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1),
-              box-shadow 0.28s cubic-bezier(0.16, 1, 0.3, 1),
-              border-color 0.28s cubic-bezier(0.16, 1, 0.3, 1),
-              background-color 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+/* ═══════════════════════════════════════════════════════════════════
+   BADGE / PILL
+═══════════════════════════════════════════════════════════════════ */
+
+.badge-royal {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.3rem 0.875rem;
+  border-radius: 9999px;
+  font-size: 0.7rem;
+  font-family: 'JetBrains Mono', monospace;
+  letter-spacing: 0.08em;
+  color: var(--clr-royal);
+  background: rgba(41, 72, 216, 0.08);
+  border: 1px solid rgba(41, 72, 216, 0.18);
 }
 
-.academic-card:hover {
-  transform: translateY(-5px) scale(1.012);
-  border-color: rgba(56, 189, 248, 0.38);
-  box-shadow: 0 16px 36px -10px rgba(56, 189, 248, 0.18),
-              0 0 25px 0 rgba(99, 102, 241, 0.12);
+/* ═══════════════════════════════════════════════════════════════════
+   HERO MOUSE PARALLAX CONTAINER
+═══════════════════════════════════════════════════════════════════ */
+
+.parallax-scene {
+  transform-style: preserve-3d;
+  will-change: transform;
+  transition: transform 0.15s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Reduced motion support */
+/* ═══════════════════════════════════════════════════════════════════
+   INQUIRY FORM — light panel
+═══════════════════════════════════════════════════════════════════ */
+
+.form-panel {
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(41, 72, 216, 0.10);
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   KEYFRAME ANIMATIONS
+═══════════════════════════════════════════════════════════════════ */
+
+@keyframes blobShift {
+  0%,  100% { transform: translate(0px, 0px)    scale(1);    }
+  25%        { transform: translate(28px, -18px) scale(1.04); }
+  50%        { transform: translate(-18px, 14px) scale(0.97); }
+  75%        { transform: translate(14px,  22px) scale(1.02); }
+}
+
+@keyframes orbitalSpin {
+  0%   { transform: translate(-50%, -50%) rotate(0deg); }
+  100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   REDUCED MOTION
+═══════════════════════════════════════════════════════════════════ */
+
 @media (prefers-reduced-motion: reduce) {
-  * {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
+  *,
+  ::before,
+  ::after {
+    animation-duration:       0.01ms !important;
+    animation-iteration-count: 1     !important;
+    transition-duration:       0.01ms !important;
+    scroll-behavior:           auto   !important;
+  }
+
+  .living-bg-blob,
+  .orbital-ring,
+  .orbital-ring-1,
+  .orbital-ring-2,
+  .orbital-ring-3 {
+    animation: none !important;
   }
 }

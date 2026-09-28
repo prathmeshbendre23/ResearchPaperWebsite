@@ -3,24 +3,27 @@ import { motion } from 'framer-motion';
 
 /**
  * SectionHeader
- * Consistent section header with staggered entrance sequence (eyebrow, heading, description)
- * and controlled max-width for comfortable reading within fluid full-width sections.
+ * Consistent section header — upgraded for premium light theme.
+ * Badge, heading, highlighted heading word, and description.
  */
 export default function SectionHeader({
   badge,
   title,
   titleHighlight,
   description,
-  align = 'center', // 'center' | 'left'
-  className = '',
-  badgeColor = 'cyan', // 'cyan' | 'indigo'
+  align       = 'center',   // 'center' | 'left'
+  className   = '',
+  badgeColor  = 'blue',     // 'blue' | 'violet' | 'indigo'
 }) {
   const isCenter = align === 'center';
 
+  // Badge colour variants — all light-theme
   const badgeStyles =
-    badgeColor === 'indigo'
-      ? 'bg-indigo-500/10 border-indigo-500/25 text-indigo-300'
-      : 'bg-cyan-500/10 border-cyan-500/25 text-cyan-300';
+    badgeColor === 'violet'
+      ? 'bg-violet-500/8 border-violet-500/22 text-violet-600'
+      : badgeColor === 'indigo'
+      ? 'bg-indigo-500/8 border-indigo-500/22 text-indigo-600'
+      : 'bg-royalBlue-500/8 border-royalBlue-500/22 text-royalBlue-500';
 
   return (
     <div
@@ -34,9 +37,9 @@ export default function SectionHeader({
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-50px' }}
           transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-          className={`inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border text-xs font-mono tracking-wider uppercase mb-4 shadow-sm ${badgeStyles}`}
+          className={`inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border text-xs font-mono tracking-wider uppercase mb-4 ${badgeStyles}`}
         >
-          <span className="w-1.5 h-1.5 rounded-full bg-current shadow-[0_0_6px_currentColor]" />
+          <span className="w-1.5 h-1.5 rounded-full bg-current" />
           <span>{badge}</span>
         </motion.div>
       )}
@@ -47,11 +50,11 @@ export default function SectionHeader({
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-50px' }}
           transition={{ duration: 0.6, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-          className="font-display font-bold text-3xl sm:text-4xl lg:text-[42px] text-white tracking-tight leading-tight mb-4"
+          className="font-display font-bold text-3xl sm:text-4xl lg:text-[42px] text-navy-900 tracking-tight leading-tight mb-4"
         >
           {title}{' '}
           {titleHighlight && (
-            <span className="bg-gradient-to-r from-cyan-400 via-sky-300 to-indigo-400 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-royalBlue-500 via-softBlue-500 to-violet-500 bg-clip-text text-transparent">
               {titleHighlight}
             </span>
           )}
@@ -64,7 +67,7 @@ export default function SectionHeader({
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-50px' }}
           transition={{ duration: 0.6, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-          className="text-slate-300 text-sm sm:text-base lg:text-[17px] leading-relaxed font-normal"
+          className="text-navy-500 text-sm sm:text-base lg:text-[17px] leading-relaxed font-normal"
         >
           {description}
         </motion.p>

@@ -10,7 +10,7 @@ export default function Footer() {
   };
 
   return (
-    <footer className="bg-academic-950 border-t border-slate-800/80 text-slate-400 text-xs relative z-10 w-full" aria-label="Site Footer">
+    <footer className="bg-academic-950 border-t border-navy-700/60 text-slate-400 text-xs relative z-10 w-full" aria-label="Site Footer">
       <SectionContainer className="py-16">
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 mb-12">
@@ -18,7 +18,7 @@ export default function Footer() {
           {/* Brand Info & Mission (Cols 1-4) */}
           <div className="lg:col-span-4 space-y-4">
             <div className="flex items-center gap-3">
-              <div className="w-9 h-9 rounded-lg bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center text-cyan-400">
+              <div className="w-9 h-9 rounded-lg bg-royalBlue-500/15 border border-royalBlue-500/30 flex items-center justify-center text-softBlue-400">
                 <FileText className="w-4 h-4" />
               </div>
               <span className="font-display font-bold text-lg text-white tracking-tight">
@@ -53,7 +53,7 @@ export default function Footer() {
                 <li key={item.name}>
                   <a
                     href={item.href}
-                    className="text-slate-400 hover:text-cyan-400 transition-colors"
+                    className="text-slate-400 hover:text-softBlue-400 transition-colors"
                   >
                     {item.name}
                   </a>
@@ -72,7 +72,7 @@ export default function Footer() {
                 <li key={svc.id}>
                   <a
                     href="#services"
-                    className="text-slate-400 hover:text-cyan-400 transition-colors truncate block"
+                    className="text-slate-400 hover:text-softBlue-400 transition-colors truncate block"
                   >
                     {svc.title}
                   </a>
@@ -88,8 +88,8 @@ export default function Footer() {
             </h4>
             <ul className="space-y-3">
               <li className="flex items-start gap-2.5">
-                <Mail className="w-4 h-4 text-cyan-400 shrink-0 mt-0.5" />
-                <a href={`mailto:${siteConfig.contact.email}`} className="text-slate-300 hover:text-cyan-400 transition-colors">
+                <Mail className="w-4 h-4 text-royalBlue-400 shrink-0 mt-0.5" />
+                <a href={`mailto:${siteConfig.contact.email}`} className="text-slate-300 hover:text-softBlue-400 transition-colors">
                   {siteConfig.contact.email}
                 </a>
               </li>
@@ -130,7 +130,7 @@ export default function Footer() {
             <span>•</span>
             <button
               onClick={scrollToTop}
-              className="flex items-center gap-1.5 text-cyan-400 hover:text-cyan-300 transition-colors focus:outline-none"
+              className="flex items-center gap-1.5 text-softBlue-400 hover:text-softBlue-300 transition-colors focus:outline-none"
               aria-label="Back to top"
             >
               <span>Back to Top</span>

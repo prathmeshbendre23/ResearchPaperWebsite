@@ -1,4 +1,5 @@
 import React from 'react';
+import LivingBackground from './components/LivingBackground';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
@@ -14,10 +15,22 @@ import WhatsAppFloatingButton from './components/WhatsAppFloatingButton';
 
 export default function App() {
   return (
-    <div className="min-h-screen w-full overflow-x-hidden bg-academic-950 text-slate-200 selection:bg-cyan-500/25 selection:text-cyan-200">
+    /*
+     * Root wrapper:
+     *   - Light pearl background base (body handles the fallback)
+     *   - overflow-x-hidden prevents horizontal scroll from parallax transforms
+     *   - text-navy-800 default text on light background
+     */
+    <div className="relative min-h-screen w-full overflow-x-hidden bg-pearl-100 text-navy-800 selection:bg-royalBlue-400/25 selection:text-royalBlue-600">
+
+      {/* Fixed full-viewport living background — z-0, pointer-events-none */}
+      <LivingBackground />
+
+      {/* Navbar — z-50, above everything */}
       <Navbar />
-      
-      <main id="main-content">
+
+      {/* Page content — relative z-10 so it renders above background */}
+      <main id="main-content" className="relative z-10">
         <Hero />
         <About />
         <Services />
@@ -29,7 +42,11 @@ export default function App() {
         <InquiryForm />
       </main>
 
-      <Footer />
+      {/* Footer — relative z-10 */}
+      <div className="relative z-10">
+        <Footer />
+      </div>
+
       <WhatsAppFloatingButton />
     </div>
   );
