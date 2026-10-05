@@ -1,7 +1,7 @@
 /**
- * Inquiry Service
+ * Inquiry Service for Brain & Pen Research Services
  * 
- * Secure service layer for submitting research paper inquiries.
+ * Secure client-side service layer for submitting research paper inquiries.
  * 
  * SECURITY NOTE:
  * Email service provider API keys (such as Resend) MUST NEVER be placed in frontend code.
@@ -29,22 +29,25 @@ export const validateInquiry = (data) => {
     errors.email = "Please provide a valid email address.";
   }
 
-  // Phone number validation (allows international formats with +, digits, spaces, hyphens)
-  const phoneClean = (data.phone || "").replace(/[\s\-\(\)]/g, "");
-  if (!phoneClean || phoneClean.length < 7 || !/^\+?[0-9]{7,20}$/.test(phoneClean)) {
-    errors.phone = "Please provide a valid contact number (7 to 20 digits).";
+  // Phone number validation (optional; validate only if provided)
+  const phoneVal = (data.phone || "").trim();
+  if (phoneVal) {
+    const phoneClean = phoneVal.replace(/[\s\-\(\)]/g, "");
+    if (phoneClean.length < 7 || phoneClean.length > 25 || !/^\+?[0-9]{7,25}$/.test(phoneClean)) {
+      errors.phone = "Please provide a valid phone number (7 to 20 digits).";
+    }
   }
 
-  if (!data.researchArea || data.researchArea === "") {
-    errors.researchArea = "Please select your primary research discipline.";
+  if (!data.serviceNeeded || data.serviceNeeded.trim() === "") {
+    errors.serviceNeeded = "Please select the type of enquiry.";
   }
 
-  if (!data.paperTitle || data.paperTitle.trim().length < 3) {
-    errors.paperTitle = "Please provide your tentative research title or topic.";
+  if (!data.researchArea || data.researchArea.trim() === "") {
+    errors.researchArea = "Please select your research area.";
   }
 
   if (!data.message || data.message.trim().length < 10) {
-    errors.message = "Please provide brief details about your paper or requirements (at least 10 characters).";
+    errors.message = "Please describe your research requirement (at least 10 characters).";
   }
 
   return {
@@ -56,7 +59,7 @@ export const validateInquiry = (data) => {
 /**
  * Submit inquiry to server-side email endpoint (/api/inquiry)
  * @param {Object} inquiryData 
- * @returns {Promise<{ success: boolean, referenceId?: string, message: string }>}
+ * @returns {Promise<{ success: boolean, referenceId?: string, message: string, errors?: Object }>}
  */
 export const submitInquiry = async (inquiryData) => {
   // 1. Client-side validation check
@@ -70,13 +73,14 @@ export const submitInquiry = async (inquiryData) => {
     };
   }
 
-  // 2. Prepare structured payload
+  // 2. Prepare structured payload (compatible with both backend and email rendering)
   const payload = {
     fullName: inquiryData.fullName?.trim() || '',
     email: inquiryData.email?.trim() || '',
     phone: inquiryData.phone?.trim() || '',
+    institution: inquiryData.institution?.trim() || '',
     researchArea: inquiryData.researchArea?.trim() || '',
-    serviceNeeded: inquiryData.serviceNeeded?.trim() || 'General Publication Guidance',
+    serviceNeeded: inquiryData.serviceNeeded?.trim() || '',
     paperTitle: inquiryData.paperTitle?.trim() || '',
     message: inquiryData.message?.trim() || ''
   };

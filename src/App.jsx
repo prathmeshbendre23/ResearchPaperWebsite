@@ -7,7 +7,9 @@ import Services from './components/Services';
 import WhyChooseUs from './components/WhyChooseUs';
 import PublicationProcess from './components/PublicationProcess';
 import ResearchAreas from './components/ResearchAreas';
+import ResearcherNetwork from './components/ResearcherNetwork';
 import Publications from './components/Publications';
+import InstitutionalCollaboration from './components/InstitutionalCollaboration';
 import CTA from './components/CTA';
 import InquiryForm from './components/InquiryForm';
 import Footer from './components/Footer';
@@ -37,7 +39,9 @@ export default function App() {
         <WhyChooseUs />
         <PublicationProcess />
         <ResearchAreas />
+        <ResearcherNetwork />
         <Publications />
+        <InstitutionalCollaboration />
         <CTA />
         <InquiryForm />
       </main>

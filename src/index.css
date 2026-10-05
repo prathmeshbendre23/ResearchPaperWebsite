@@ -8,14 +8,15 @@
 @layer base {
   :root {
     color-scheme: light;
-    --clr-bg:        #F8F9FF;
+    --clr-bg:        #F7F8FF;
     --clr-navy:      #0B1B4A;
     --clr-royal:     #2948D8;
     --clr-soft-blue: #6D8CFF;
     --clr-violet:    #8B6DFF;
-    --clr-blob-1:    rgba(41,  72, 216, 0.11);
-    --clr-blob-2:    rgba(139,109, 255, 0.09);
-    --clr-blob-3:    rgba(109,140, 255, 0.08);
+    /* Blobs slightly more visible */
+    --clr-blob-1:    rgba(41,  72, 216, 0.13);
+    --clr-blob-2:    rgba(139,109, 255, 0.11);
+    --clr-blob-3:    rgba(109,140, 255, 0.10);
   }
 
   html {
@@ -33,19 +34,21 @@
   :focus-visible {
     outline: 2px solid var(--clr-royal);
     outline-offset: 3px;
+    border-radius: 4px;
   }
 }
 
 /* ═══════════════════════════════════════════════════════════════════
    SCROLLBAR — Light theme
 ═══════════════════════════════════════════════════════════════════ */
-::-webkit-scrollbar          { width: 7px; }
-::-webkit-scrollbar-track    { background: #EFF1FB; }
+::-webkit-scrollbar          { width: 6px; }
+::-webkit-scrollbar-track    { background: #EEF0FB; }
 ::-webkit-scrollbar-thumb    { background: #A8B6D9; border-radius: 4px; }
 ::-webkit-scrollbar-thumb:hover { background: #7A90C3; }
 
 /* ═══════════════════════════════════════════════════════════════════
-   LIVING BACKGROUND LAYERS
+   LIVING BACKGROUND LAYERS — Premium Atmospheric System
+   Visual hierarchy: gradient → volumetric glows → particles → orbitals
 ═══════════════════════════════════════════════════════════════════ */
 
 /* Full-viewport fixed host */
@@ -59,52 +62,109 @@
   overflow: hidden;
 }
 
-/* Layer 1 — Gradient base */
+/*
+  Layer 1 — Pearl/lavender atmospheric gradient
+  Very soft, matches reference's bright airy background.
+  Not pure white — has a very faint cool lavender undertone.
+*/
 .living-bg-gradient {
   position: absolute;
   inset: 0;
-  background: linear-gradient(145deg, #FFFFFF 0%, #F8F9FF 35%, #F2EEFF 65%, #EDE9FF 100%);
+  background: linear-gradient(
+    152deg,
+    #FFFFFF   0%,
+    #F9FAFF  18%,
+    #F4F0FF  48%,
+    #EDE8FF  72%,
+    #E8E3FF 100%
+  );
 }
 
-/* Layer 2 — Glow blobs */
+/*
+  Layer 2 — Volumetric glow blobs
+  These are intentionally VERY large and VERY blurred so they create
+  an ambient studio-lighting feel, not visible gradient circles.
+
+  The trick: ultra-large dimensions + very high blur (90–130px) +
+  moderate opacity = perceived volumetric light, not CSS gradient blobs.
+*/
 .living-bg-blob {
   position: absolute;
   border-radius: 50%;
-  filter: blur(80px);
   will-change: transform;
-  /* Blob animation driven by JS translate via inline style */
+  /* No border-radius hard edge — shape is dissolved by blur */
 }
 
+/* Blob 1 — Large soft blue KEY LIGHT (top-left, primary fill) */
 .living-bg-blob-1 {
-  width: clamp(380px, 45vw, 720px);
-  height: clamp(280px, 35vw, 560px);
-  background: radial-gradient(ellipse, rgba(41, 72, 216, 0.14) 0%, rgba(41, 72, 216, 0.04) 60%, transparent 100%);
-  top: -8%;
-  left: -5%;
-  animation: blobShift 28s ease-in-out infinite;
+  width:  clamp(500px, 62vw, 920px);
+  height: clamp(360px, 46vw, 700px);
+  background: radial-gradient(
+    ellipse at 40% 40%,
+    rgba(41, 72, 216, 0.14)  0%,
+    rgba(68, 108, 255, 0.07) 40%,
+    rgba(41, 72, 216, 0.02)  70%,
+    transparent 100%
+  );
+  filter: blur(100px);
+  top:  -10%;
+  left: -8%;
+  animation: blobDrift1 28s ease-in-out infinite;
 }
 
+/* Blob 2 — Lavender/violet FILL LIGHT (right side) */
 .living-bg-blob-2 {
-  width: clamp(300px, 40vw, 640px);
-  height: clamp(260px, 32vw, 520px);
-  background: radial-gradient(ellipse, rgba(139, 109, 255, 0.12) 0%, rgba(139, 109, 255, 0.03) 60%, transparent 100%);
-  top: 30%;
-  right: -8%;
-  animation: blobShift 36s ease-in-out infinite reverse;
-  animation-delay: -12s;
+  width:  clamp(420px, 54vw, 800px);
+  height: clamp(340px, 42vw, 660px);
+  background: radial-gradient(
+    ellipse at 55% 45%,
+    rgba(139, 109, 255, 0.13) 0%,
+    rgba(167, 139, 250, 0.06) 45%,
+    rgba(139, 109, 255, 0.02) 70%,
+    transparent 100%
+  );
+  filter: blur(110px);
+  top:   22%;
+  right: -10%;
+  animation: blobDrift2 36s ease-in-out infinite;
+  animation-delay: -14s;
 }
 
+/* Blob 3 — Ice blue AMBIENT (center, low) */
 .living-bg-blob-3 {
-  width: clamp(260px, 36vw, 580px);
-  height: clamp(220px, 28vw, 440px);
-  background: radial-gradient(ellipse, rgba(109, 140, 255, 0.10) 0%, rgba(109, 140, 255, 0.02) 60%, transparent 100%);
-  bottom: 5%;
-  left: 25%;
-  animation: blobShift 44s ease-in-out infinite;
+  width:  clamp(360px, 48vw, 720px);
+  height: clamp(280px, 36vw, 560px);
+  background: radial-gradient(
+    ellipse at 50% 50%,
+    rgba(109, 140, 255, 0.10) 0%,
+    rgba(147, 197, 253, 0.05) 50%,
+    transparent 100%
+  );
+  filter: blur(120px);
+  bottom: -4%;
+  left:   18%;
+  animation: blobDrift1 46s ease-in-out infinite;
   animation-delay: -22s;
 }
 
-/* Layer 4 — Orbital SVG host */
+/* Blob 4 — Pale violet RIM (bottom-left accent) */
+.living-bg-blob-4 {
+  width:  clamp(280px, 38vw, 580px);
+  height: clamp(220px, 28vw, 440px);
+  background: radial-gradient(
+    ellipse at 50% 50%,
+    rgba(167, 139, 250, 0.10) 0%,
+    rgba(196, 181, 253, 0.04) 55%,
+    transparent 100%
+  );
+  filter: blur(90px);
+  bottom: 15%;
+  left:   -5%;
+  animation: blobDrift2 54s ease-in-out infinite;
+  animation-delay: -30s;
+}
+
+/* Layer 4 — Orbital rings host (parallax target) */
 .living-bg-orbitals {
   position: absolute;
   inset: 0;
@@ -116,55 +176,57 @@
   position: absolute;
   border-radius: 50%;
   border-style: solid;
-  border-color: rgba(41, 72, 216, 0.06);
   pointer-events: none;
 }
 
+/* Ring 1 — large, centred, extremely faint */
 .orbital-ring-1 {
-  width: min(80vw, 800px);
-  height: min(80vw, 800px);
-  border-width: 1px;
-  top: 50%;
+  width:  min(80vw, 820px);
+  height: min(80vw, 820px);
+  border-width: 0.75px;
+  border-color: rgba(41, 72, 216, 0.055);
+  top:  50%;
   left: 50%;
   transform: translate(-50%, -50%) rotate(0deg);
-  animation: orbitalSpin 130s linear infinite;
+  animation: orbitalSpin 140s linear infinite;
 }
 
+/* Ring 2 — offset, lavender, slower */
 .orbital-ring-2 {
-  width: min(55vw, 560px);
-  height: min(55vw, 560px);
-  border-width: 0.5px;
-  border-color: rgba(139, 109, 255, 0.05);
-  top: 40%;
-  left: 55%;
+  width:  min(54vw, 560px);
+  height: min(54vw, 560px);
+  border-width: 0.6px;
+  border-color: rgba(139, 109, 255, 0.050);
+  top:  40%;
+  left: 58%;
   transform: translate(-50%, -50%) rotate(0deg);
-  animation: orbitalSpin 190s linear infinite reverse;
+  animation: orbitalSpin 200s linear infinite reverse;
 }
 
+/* Ring 3 — small, ice-blue */
 .orbital-ring-3 {
-  width: min(38vw, 380px);
+  width:  min(38vw, 380px);
   height: min(38vw, 380px);
-  border-width: 0.5px;
-  border-color: rgba(109, 140, 255, 0.055);
-  top: 60%;
-  left: 40%;
+  border-width: 0.6px;
+  border-color: rgba(109, 140, 255, 0.048);
+  top:  65%;
+  left: 38%;
   transform: translate(-50%, -50%) rotate(45deg);
-  animation: orbitalSpin 90s linear infinite;
+  animation: orbitalSpin 96s linear infinite;
 }
 
 /* ═══════════════════════════════════════════════════════════════════
    SCIENTIFIC GRID BACKGROUNDS
 ═══════════════════════════════════════════════════════════════════ */
 
-/* Light grid (new sections) */
 .scientific-grid-light-bg {
   background-size: 44px 44px;
   background-image:
-    linear-gradient(to right,  rgba(41, 72, 216, 0.045) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(41, 72, 216, 0.045) 1px, transparent 1px);
+    linear-gradient(to right,  rgba(41, 72, 216, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(41, 72, 216, 0.04) 1px, transparent 1px);
 }
 
-/* Legacy dark grid (kept for dark sections) */
+/* Legacy dark grid (footer / dark panels only) */
 .scientific-grid-bg {
   background-size: 40px 40px;
   background-image:
@@ -177,82 +239,84 @@
 ═══════════════════════════════════════════════════════════════════ */
 
 .academic-glass {
-  background: rgba(255, 255, 255, 0.78);
+  background: rgba(255, 255, 255, 0.80);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border: 1px solid rgba(41, 72, 216, 0.12);
 }
 
 .academic-glass-subtle {
-  background: rgba(255, 255, 255, 0.55);
+  background: rgba(255, 255, 255, 0.58);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid rgba(41, 72, 216, 0.08);
 }
 
 .academic-glass-interactive {
-  background: rgba(255, 255, 255, 0.72);
+  background: rgba(255, 255, 255, 0.75);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   border: 1px solid rgba(41, 72, 216, 0.10);
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .academic-glass-interactive:hover {
-  background: rgba(255, 255, 255, 0.92);
-  border-color: rgba(41, 72, 216, 0.28);
+  background: rgba(255, 255, 255, 0.94);
+  border-color: rgba(41, 72, 216, 0.26);
   box-shadow:
-    0 10px 30px -8px rgba(41, 72, 216, 0.16),
-    0 0 20px 0   rgba(139, 109, 255, 0.09);
+    0 10px 32px -8px rgba(41, 72, 216, 0.15),
+    0 0  20px  0   rgba(139, 109, 255, 0.08);
   transform: translateY(-2px);
 }
 
 /* ═══════════════════════════════════════════════════════════════════
    SECTION BACKGROUND UTILITIES
+   Subtle alternation: white → lavender-tint → pearl → white
 ═══════════════════════════════════════════════════════════════════ */
 
 .section-pearl {
-  background-color: rgba(248, 249, 255, 0.85);
+  background-color: rgba(247, 248, 255, 0.88);
 }
 
 .section-pearl-alt {
-  background-color: rgba(255, 255, 255, 0.90);
+  background-color: rgba(255, 255, 255, 0.92);
 }
 
 .section-lavender {
-  background-color: rgba(237, 233, 255, 0.30);
+  background-color: rgba(234, 230, 255, 0.28);
 }
 
 .section-blue-tint {
-  background-color: rgba(219, 234, 254, 0.25);
+  background-color: rgba(219, 234, 254, 0.22);
 }
 
-/* Dark footer section */
+/* Dark footer */
 .section-deep {
   background-color: #060d1d;
 }
 
 /* ═══════════════════════════════════════════════════════════════════
-   CARD SYSTEM — Light premium
+   CARD SYSTEM — Consistent visual language across all sections
 ═══════════════════════════════════════════════════════════════════ */
 
 .academic-card {
-  background: rgba(255, 255, 255, 0.82);
-  border: 1px solid rgba(203, 213, 225, 0.80);
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(203, 213, 225, 0.75);
+  border-radius: 1rem;         /* 16px — consistent across site */
   transition:
-    transform      0.28s cubic-bezier(0.16, 1, 0.3, 1),
-    box-shadow     0.28s cubic-bezier(0.16, 1, 0.3, 1),
-    border-color   0.28s cubic-bezier(0.16, 1, 0.3, 1),
-    background     0.28s cubic-bezier(0.16, 1, 0.3, 1);
+    transform    0.28s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow   0.28s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.28s cubic-bezier(0.16, 1, 0.3, 1),
+    background   0.28s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .academic-card:hover {
-  transform:    translateY(-4px) scale(1.01);
-  background:   rgba(255, 255, 255, 0.96);
-  border-color: rgba(41, 72, 216, 0.28);
+  transform:    translateY(-5px);
+  background:   rgba(255, 255, 255, 0.97);
+  border-color: rgba(41, 72, 216, 0.26);
   box-shadow:
-    0 12px 36px -8px  rgba(41, 72, 216, 0.16),
-    0 0   24px  0     rgba(139, 109, 255, 0.09);
+    0 14px 40px -8px  rgba(41, 72, 216, 0.15),
+    0 0   26px  0     rgba(139, 109, 255, 0.08);
 }
 
 /* ═══════════════════════════════════════════════════════════════════
@@ -263,8 +327,8 @@
   width: 100%;
   max-width: none;
   margin-inline: auto;
-  padding-left:  clamp(20px, 3vw, 56px);
-  padding-right: clamp(20px, 3vw, 56px);
+  padding-left:  clamp(18px, 2.8vw, 52px);
+  padding-right: clamp(18px, 2.8vw, 52px);
 }
 
 /* ═══════════════════════════════════════════════════════════════════
@@ -275,14 +339,14 @@
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.3rem 0.875rem;
+  padding: 0.28rem 0.85rem;
   border-radius: 9999px;
-  font-size: 0.7rem;
+  font-size: 0.68rem;
   font-family: 'JetBrains Mono', monospace;
   letter-spacing: 0.08em;
   color: var(--clr-royal);
   background: rgba(41, 72, 216, 0.08);
-  border: 1px solid rgba(41, 72, 216, 0.18);
+  border: 1px solid rgba(41, 72, 216, 0.17);
 }
 
 /* ═══════════════════════════════════════════════════════════════════
@@ -292,7 +356,7 @@
 .parallax-scene {
   transform-style: preserve-3d;
   will-change: transform;
-  transition: transform 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.18s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 /* ═══════════════════════════════════════════════════════════════════
@@ -300,25 +364,80 @@
 ═══════════════════════════════════════════════════════════════════ */
 
 .form-panel {
-  background: rgba(255, 255, 255, 0.92);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(41, 72, 216, 0.10);
+  background: rgba(255, 255, 255, 0.93);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(41, 72, 216, 0.09);
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   SCROLL REVEAL — Consistent entrance for sections
+   Components using framer-motion whileInView should use these values:
+   initial: { opacity: 0, y: 20 }
+   animate: { opacity: 1, y: 0 }
+   transition: { duration: 0.55, ease: [0.16, 1, 0.3, 1] }
+═══════════════════════════════════════════════════════════════════ */
+
+/* CSS-only scroll reveal (for non-React elements) */
+.reveal-up {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.55s ease, transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   SECTION HEADING UTILITIES
+═══════════════════════════════════════════════════════════════════ */
+
+.section-eyebrow {
+  display: inline-block;
+  font-size: 0.68rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 700;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  color: var(--clr-royal);
+  background: rgba(41, 72, 216, 0.07);
+  border: 1px solid rgba(41, 72, 216, 0.16);
+  padding: 0.28rem 0.85rem;
+  border-radius: 9999px;
+  margin-bottom: 1rem;
 }
 
 /* ═══════════════════════════════════════════════════════════════════
    KEYFRAME ANIMATIONS
 ═══════════════════════════════════════════════════════════════════ */
 
-@keyframes blobShift {
-  0%,  100% { transform: translate(0px, 0px)    scale(1);    }
-  25%        { transform: translate(28px, -18px) scale(1.04); }
-  50%        { transform: translate(-18px, 14px) scale(0.97); }
-  75%        { transform: translate(14px,  22px) scale(1.02); }
+/*
+  blobDrift1 — gentle organic drift with subtle scale breathing.
+  Different path from blobDrift2 for visual variety.
+*/
+@keyframes blobDrift1 {
+  0%,  100% { transform: translate(0px,    0px)   scale(1.00); }
+  20%        { transform: translate(22px,  -14px)  scale(1.03); }
+  40%        { transform: translate(-14px,  18px)  scale(0.98); }
+  60%        { transform: translate(18px,   10px)  scale(1.02); }
+  80%        { transform: translate(-10px, -20px)  scale(0.97); }
+}
+
+/*
+  blobDrift2 — different path for visual variety between blobs.
+  Slightly larger movement range.
+*/
+@keyframes blobDrift2 {
+  0%,  100% { transform: translate(0px,    0px)   scale(1.00); }
+  25%        { transform: translate(-20px,  16px)  scale(1.04); }
+  50%        { transform: translate(16px,  -20px)  scale(0.97); }
+  75%        { transform: translate(-12px,  8px)   scale(1.02); }
 }
 
 @keyframes orbitalSpin {
-  0%   { transform: translate(-50%, -50%) rotate(0deg); }
+  0%   { transform: translate(-50%, -50%) rotate(0deg);   }
   100% { transform: translate(-50%, -50%) rotate(360deg); }
 }
 
@@ -330,17 +449,49 @@
   *,
   ::before,
   ::after {
-    animation-duration:       0.01ms !important;
-    animation-iteration-count: 1     !important;
+    animation-duration:        0.01ms !important;
+    animation-iteration-count: 1      !important;
     transition-duration:       0.01ms !important;
     scroll-behavior:           auto   !important;
   }
 
   .living-bg-blob,
+  .living-bg-blob-1,
+  .living-bg-blob-2,
+  .living-bg-blob-3,
+  .living-bg-blob-4,
   .orbital-ring,
   .orbital-ring-1,
   .orbital-ring-2,
   .orbital-ring-3 {
     animation: none !important;
   }
+
+  .reveal-up {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
 }
+
+/* ═══════════════════════════════════════════════════════════════════
+   MOBILE — Performance-optimised blobs, reduced parallax
+═══════════════════════════════════════════════════════════════════ */
+
+@media (max-width: 767px) {
+  /* Reduce blob size & blur on mobile for GPU performance */
+  .living-bg-blob {
+    filter: blur(65px);
+  }
+
+  .living-bg-blob-1 { width: 320px; height: 240px; }
+  .living-bg-blob-2 { width: 280px; height: 220px; }
+  .living-bg-blob-3 { width: 240px; height: 190px; }
+  .living-bg-blob-4 { width: 200px; height: 160px; }
+
+  /* Orbital rings — only one ring on mobile */
+  .orbital-ring-1 { width: min(90vw, 360px); height: min(90vw, 360px); }
+  .orbital-ring-2 { display: none; }
+  .orbital-ring-3 { display: none; }
+}
+

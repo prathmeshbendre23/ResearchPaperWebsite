@@ -1,47 +1,38 @@
 import React, { useRef, useCallback, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { getWhatsAppUrl } from '../config/siteConfig';
+import { researchLifecycleData } from '../data/siteData';
 import ResearchScene from './3d/ResearchScene';
 import SectionContainer from './SectionContainer';
 import { ArrowRight, MessageCircle, ChevronDown, Sparkles, BookOpen } from 'lucide-react';
 
-/**
- * Hero section
- *
- * - Transparent background — lets LivingBackground show through
- * - Mouse parallax fed to ResearchScene for subtle 3D depth response
- * - All content / copy / links unchanged
- */
 export default function Hero() {
-  const sceneWrapRef  = useRef(null);
-  const mouseRef      = useRef({ x: 0, y: 0 });
-  const rafRef        = useRef(null);
+  const sceneWrapRef = useRef(null);
+  const mouseRef = useRef({ x: 0, y: 0 });
+  const rafRef = useRef(null);
 
-  // Smoothly apply parallax transform to the 3D scene wrapper
+  // Smooth parallax tilt on 3D wrapper — very subtle
   const applyParallax = useCallback(() => {
     if (!sceneWrapRef.current) return;
     const { x, y } = mouseRef.current;
-    // Very subtle tilt: max ±3.5° X, ±2.5° Y
-    const rx = (y - 0.5) * -5;   // tilt around X axis
-    const ry = (x - 0.5) *  7;   // tilt around Y axis
+    const rx = (y - 0.5) * -4;   // max ±2° tilt
+    const ry = (x - 0.5) * 5;
     sceneWrapRef.current.style.transform =
-      `perspective(900px) rotateX(${rx}deg) rotateY(${ry}deg)`;
+      `perspective(1000px) rotateX(${rx}deg) rotateY(${ry}deg)`;
   }, []);
 
   useEffect(() => {
-    // Check reduced motion — skip parallax if enabled
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
     let lastMove = 0;
     const onMouseMove = (e) => {
       const now = performance.now();
-      if (now - lastMove < 16) return; // ~60 fps throttle
+      if (now - lastMove < 16) return;
       lastMove = now;
       mouseRef.current = {
         x: e.clientX / window.innerWidth,
         y: e.clientY / window.innerHeight,
       };
-      // Schedule a single rAF per mouse event
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
       rafRef.current = requestAnimationFrame(applyParallax);
     };
@@ -56,160 +47,266 @@ export default function Hero() {
   return (
     <section
       id="home"
-      className="relative min-h-screen flex items-center justify-center pt-28 pb-16 overflow-hidden w-full"
-      aria-label="Hero Introduction"
+      className="relative min-h-screen flex flex-col justify-center pt-20 sm:pt-24 pb-10 overflow-hidden w-full"
+      aria-label="Brain & Pen Introduction"
     >
-      {/*
-        Hero section has a transparent background so LivingBackground
-        shows fully. We add extra glow blobs here specific to the hero
-        to make this the strongest visual section.
-      */}
-
-      {/* Hero-specific glow: large soft royal blue centre-left */}
+      {/* Hero-specific diffused glow — LEFT side, very soft blue light behind text */}
       <div
-        className="absolute top-1/3 left-1/4 -translate-x-1/2 -translate-y-1/2 pointer-events-none"
+        className="absolute pointer-events-none"
         style={{
-          width:  'clamp(400px, 55vw, 800px)',
-          height: 'clamp(300px, 42vw, 600px)',
+          top: '10%',
+          left: '-12%',
+          width: 'clamp(400px, 55vw, 800px)',
+          height: 'clamp(300px, 45vw, 650px)',
           borderRadius: '50%',
-          background: 'radial-gradient(ellipse, rgba(41,72,216,0.13) 0%, rgba(41,72,216,0.03) 60%, transparent 100%)',
-          filter: 'blur(60px)',
+          background:
+            'radial-gradient(ellipse at 45% 42%, rgba(41,72,216,0.09) 0%, rgba(68,108,255,0.04) 50%, transparent 100%)',
+          filter: 'blur(90px)',
         }}
       />
 
-      {/* Hero-specific glow: violet right side behind 3D scene */}
+      {/* CENTER atmospheric glow — very large, connects left and right */}
       <div
-        className="absolute top-1/2 right-0 lg:-right-8 -translate-y-1/2 pointer-events-none"
+        className="absolute pointer-events-none"
         style={{
-          width:  'clamp(350px, 48vw, 780px)',
-          height: 'clamp(300px, 44vw, 720px)',
+          top: '20%',
+          left: '25%',
+          width: 'clamp(500px, 60vw, 900px)',
+          height: 'clamp(380px, 50vw, 750px)',
           borderRadius: '50%',
-          background: 'radial-gradient(ellipse, rgba(139,109,255,0.11) 0%, rgba(109,140,255,0.05) 50%, transparent 100%)',
-          filter: 'blur(70px)',
+          background:
+            'radial-gradient(ellipse at 50% 48%, rgba(167,139,250,0.07) 0%, rgba(139,109,255,0.03) 55%, transparent 100%)',
+          filter: 'blur(110px)',
         }}
       />
 
-      {/* Scientific grid overlay (very faint) */}
+      {/* RIGHT glow — primary atmospheric halo behind 3D scene */}
       <div
-        className="absolute inset-0 pointer-events-none scientific-grid-light-bg opacity-60"
+        className="absolute pointer-events-none"
+        style={{
+          top: '15%',
+          right: '-8%',
+          width: 'clamp(380px, 52vw, 800px)',
+          height: 'clamp(320px, 48vw, 740px)',
+          borderRadius: '50%',
+          background:
+            'radial-gradient(ellipse at 52% 45%, rgba(139,109,255,0.11) 0%, rgba(109,140,255,0.06) 40%, rgba(167,139,250,0.02) 70%, transparent 100%)',
+          filter: 'blur(95px)',
+        }}
       />
 
-      {/* Content grid */}
-      <SectionContainer className="grid grid-cols-1 lg:grid-cols-12 gap-8 xl:gap-12 2xl:gap-16 items-center min-h-[85vh] lg:min-h-[calc(100vh-8rem)]">
+      {/* Subtle grid overlay — only in hero */}
+      <div className="absolute inset-0 pointer-events-none scientific-grid-light-bg opacity-50" />
 
-        {/* Left Column: Hero Text */}
+      {/* ── MAIN HERO CONTENT ── */}
+      <SectionContainer className="grid grid-cols-1 lg:grid-cols-12 gap-6 xl:gap-10 items-center min-h-[78vh] lg:min-h-[calc(100vh-12rem)]">
+
+        {/* LEFT: Text Column */}
         <motion.div
-          initial={{ opacity: 0, y: 25 }}
+          initial={{ opacity: 0, y: 28 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          className="lg:col-span-6 xl:col-span-5 2xl:col-span-5 flex flex-col justify-center text-center lg:text-left z-10"
+          transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
+          className="lg:col-span-6 xl:col-span-6 flex flex-col justify-center text-center lg:text-left z-10 order-2 lg:order-1"
         >
-          {/* Academic Badge */}
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-royalBlue-500/8 border border-royalBlue-500/20 text-royalBlue-500 text-xs font-mono tracking-wide w-fit mx-auto lg:mx-0 mb-6">
-            <Sparkles className="w-3.5 h-3.5 text-royalBlue-400" />
-            <span>ACADEMIC CONSULTING &amp; PUBLICATION ADVISORY</span>
+          {/* Eyebrow badge */}
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-royalBlue-500/[0.08] border border-royalBlue-500/20 text-royalBlue-600 text-[11px] font-mono tracking-wide w-fit mx-auto lg:mx-0 mb-5">
+            <Sparkles className="w-3 h-3 text-royalBlue-500" />
+            <span>Research &amp; Academic Support</span>
           </div>
 
-          {/* Headline */}
-          <h1 className="font-display font-extrabold text-4xl sm:text-5xl lg:text-[54px] xl:text-[62px] tracking-tight text-navy-900 leading-[1.12] mb-6">
-            Publish Your Research. <br className="hidden sm:inline" />
+          {/* Headline — carefully sized for clean line breaks */}
+          <h1 className="font-display font-extrabold text-[32px] sm:text-[40px] lg:text-[44px] xl:text-[52px] tracking-tight text-navy-900 leading-[1.13] mb-5">
+            Transforming Research Ideas<br className="hidden sm:block" /> into{' '}
             <span className="bg-gradient-to-r from-royalBlue-500 via-softBlue-500 to-violet-500 bg-clip-text text-transparent">
-              Share Your Knowledge.
+              High-Quality Publications.
             </span>
           </h1>
 
-          {/* Supporting Paragraph */}
-          <p className="text-base sm:text-lg text-navy-600 max-w-xl mx-auto lg:mx-0 mb-8 font-normal leading-relaxed">
-            Professional guidance and publication support for researchers, academics and scholars.
-            Navigating manuscript readiness, peer-review standards, journal selection, and final publication.
+          {/* Quality badges */}
+          <div className="flex flex-wrap items-center justify-center lg:justify-start gap-2 mb-4">
+            <span className="inline-flex items-center px-3 py-1 rounded-lg text-[11px] font-semibold text-royalBlue-700 bg-royalBlue-500/[0.08] border border-royalBlue-500/18">
+              Quality Research
+            </span>
+            <span className="text-navy-300 font-bold text-sm">·</span>
+            <span className="inline-flex items-center px-3 py-1 rounded-lg text-[11px] font-semibold text-violet-700 bg-violet-500/[0.08] border border-violet-500/18">
+              Standard Publications
+            </span>
+            <span className="text-navy-300 font-bold text-sm">·</span>
+            <span className="inline-flex items-center px-3 py-1 rounded-lg text-[11px] font-semibold text-emerald-700 bg-emerald-500/[0.08] border border-emerald-500/18">
+              Full Support
+            </span>
+          </div>
+
+          {/* Support focus points */}
+          <div className="flex flex-wrap items-center justify-center lg:justify-start gap-x-4 gap-y-1.5 mb-5 text-[11.5px] font-medium text-navy-500">
+            <span className="flex items-center gap-1.5">
+              <span className="w-1.5 h-1.5 rounded-full bg-royalBlue-500 shrink-0" />
+              Research Writing &amp; Technical Development
+            </span>
+            <span className="flex items-center gap-1.5">
+              <span className="w-1.5 h-1.5 rounded-full bg-violet-500 shrink-0" />
+              Publication, Revision &amp; Journal Support
+            </span>
+            <span className="flex items-center gap-1.5">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0" />
+              Projects, Thesis, Patents &amp; Collaboration
+            </span>
+          </div>
+
+          {/* Description */}
+          <p className="text-sm sm:text-[15px] text-navy-600 max-w-[560px] mx-auto lg:mx-0 mb-7 leading-relaxed">
+            Brain &amp; Pen Research Services supports PhD researchers, PG/UG students, faculty members,
+            institutions, and multidisciplinary research teams across the complete research lifecycle—from
+            research design and manuscript development to publication planning, thesis support, revisions,
+            patents, books, and collaborative academic initiatives.
           </p>
 
-          {/* Action CTA Buttons */}
-          <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
+          {/* CTA Buttons — clear visual hierarchy */}
+          <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3">
+            {/* PRIMARY: Explore Services */}
             <a
-              href="#inquiry"
-              className="w-full sm:w-auto flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl font-semibold text-sm text-white bg-gradient-to-r from-royalBlue-500 to-violet-500 hover:from-royalBlue-400 hover:to-violet-400 shadow-glow-blue hover:-translate-y-0.5 hover:scale-[1.02] hover:shadow-[0_4px_24px_rgba(41,72,216,0.40)] transition-all duration-200 transform active:scale-95"
+              href="#services"
+              className="w-full sm:w-auto flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl font-semibold text-[13px] text-white bg-gradient-to-r from-royalBlue-500 to-violet-500 hover:from-royalBlue-400 hover:to-violet-400 shadow-[0_4px_20px_-2px_rgba(41,72,216,0.38)] hover:shadow-[0_6px_28px_-2px_rgba(41,72,216,0.50)] hover:-translate-y-0.5 transition-all duration-200 active:scale-95"
             >
-              <span>Start Your Inquiry</span>
+              <span>Explore Services</span>
               <ArrowRight className="w-4 h-4" />
             </a>
 
+            {/* SECONDARY: Institutional Collaboration */}
             <a
-              href="#services"
-              className="w-full sm:w-auto flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl font-medium text-sm text-navy-700 bg-white/70 hover:bg-white border border-navy-200 hover:border-royalBlue-400/50 hover:-translate-y-0.5 hover:shadow-card-light transition-all duration-200 backdrop-blur-sm"
+              href="#collaborate"
+              className="w-full sm:w-auto flex items-center justify-center gap-2 px-5 py-3.5 rounded-xl font-medium text-[13px] text-navy-700 bg-white/85 hover:bg-white border border-navy-200 hover:border-royalBlue-400/40 hover:-translate-y-0.5 hover:shadow-[0_4px_16px_-2px_rgba(11,27,74,0.12)] transition-all duration-200 backdrop-blur-sm"
             >
               <BookOpen className="w-4 h-4 text-royalBlue-500" />
-              <span>Explore Services</span>
+              <span>Institutional Collaboration &amp; MoUs</span>
             </a>
 
+            {/* TERTIARY: WhatsApp */}
             <a
-              href={getWhatsAppUrl("Hi, I want to discuss my research paper publication.")}
+              href={getWhatsAppUrl("Hello Brain & Pen, I would like to consult regarding research and publication support.")}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full sm:w-auto flex items-center justify-center gap-2 px-5 py-3.5 rounded-xl font-medium text-sm text-emerald-600 bg-emerald-500/8 hover:bg-emerald-500/16 border border-emerald-500/22 hover:border-emerald-500/50 hover:-translate-y-0.5 hover:shadow-[0_0_16px_rgba(16,185,129,0.20)] transition-all duration-200"
+              className="w-full sm:w-auto flex items-center justify-center gap-2 px-4 py-3.5 rounded-xl font-medium text-[13px] text-emerald-700 bg-emerald-50 hover:bg-emerald-100 border border-emerald-200 hover:border-emerald-300 hover:-translate-y-0.5 transition-all duration-200"
               title="Chat on WhatsApp"
             >
               <MessageCircle className="w-4 h-4" />
               <span>WhatsApp</span>
             </a>
           </div>
-
-          {/* Credibility Markers */}
-          <div className="mt-10 pt-6 border-t border-navy-200/60 flex flex-wrap items-center justify-center lg:justify-start gap-6 text-xs text-navy-500">
-            <div className="flex items-center gap-2">
-              <span className="w-1.5 h-1.5 rounded-full bg-royalBlue-500 shadow-[0_0_6px_rgba(41,72,216,0.6)]" />
-              <span>Peer-Review Readiness</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <span className="w-1.5 h-1.5 rounded-full bg-violet-500 shadow-[0_0_6px_rgba(139,109,255,0.6)]" />
-              <span>Journal Scope Alignment</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 shadow-[0_0_6px_rgba(16,185,129,0.6)]" />
-              <span>Confidential &amp; Structured</span>
-            </div>
-          </div>
         </motion.div>
 
-        {/* Right Column: 3D Research Scene */}
+        {/* RIGHT: 3D Research Scene */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
+          initial={{ opacity: 0, scale: 0.96 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-          className="lg:col-span-6 xl:col-span-7 2xl:col-span-7 h-[460px] sm:h-[560px] lg:h-[660px] xl:h-[750px] 2xl:h-[820px] relative flex items-center justify-center"
+          transition={{ duration: 1.1, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+          className="lg:col-span-6 xl:col-span-6 h-[380px] sm:h-[480px] lg:h-[580px] xl:h-[640px] relative flex items-center justify-center order-1 lg:order-2"
         >
-          {/* Soft halo behind 3D scene */}
-          <div className="absolute inset-0 rounded-full pointer-events-none"
+          {/*
+            Atmospheric halo behind 3D scene.
+            Multi-layer: primary lavender glow + secondary blue tint.
+            Not a visible circle — dissolved by blur radius.
+          */}
+          <div
+            className="absolute inset-0 pointer-events-none"
             style={{
-              background: 'radial-gradient(ellipse at center, rgba(41,72,216,0.10) 0%, rgba(139,109,255,0.08) 40%, transparent 75%)',
-              filter: 'blur(20px)',
+              background:
+                'radial-gradient(ellipse at 52% 46%, rgba(167,139,250,0.13) 0%, rgba(109,140,255,0.08) 35%, rgba(41,72,216,0.04) 60%, transparent 80%)',
+              filter: 'blur(32px)',
+            }}
+          />
+          {/* Secondary ambient glow — larger, very faint blue */}
+          <div
+            className="absolute inset-[-15%] pointer-events-none"
+            style={{
+              background:
+                'radial-gradient(ellipse at 50% 50%, rgba(109,140,255,0.07) 0%, transparent 70%)',
+              filter: 'blur(48px)',
             }}
           />
 
-          {/*
-            Mouse-parallax wrapper for the 3D canvas.
-            The transform is applied by the mousemove handler above.
-            transition is handled in CSS (.parallax-scene).
-          */}
-          <div
-            ref={sceneWrapRef}
-            className="parallax-scene w-full h-full z-10"
-          >
+          {/* Mouse-parallax wrapper */}
+          <div ref={sceneWrapRef} className="parallax-scene w-full h-full z-10">
             <ResearchScene className="w-full h-full" />
+          </div>
+
+          {/* Floating overlay card — Research Support Lifecycle (desktop only) */}
+          <div
+            className="hidden xl:block absolute bottom-4 -left-4 z-20 w-[300px] rounded-2xl bg-white/92 border border-navy-200/70 p-4 shadow-card-light backdrop-blur-md"
+            style={{ boxShadow: '0 8px 32px -8px rgba(11,27,74,0.12)' }}
+          >
+            <div className="flex items-center justify-between pb-2.5 mb-2.5 border-b border-navy-100">
+              <span className="text-[10px] font-mono font-bold text-royalBlue-600 tracking-wider uppercase">
+                Research Support Lifecycle
+              </span>
+              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+            </div>
+            <div className="space-y-2">
+              {researchLifecycleData.map((item) => (
+                <div key={item.step} className="flex items-start gap-2.5 text-left">
+                  <span className="w-5 h-5 rounded-md bg-royalBlue-500/10 border border-royalBlue-500/18 text-royalBlue-600 font-mono text-[9.5px] font-bold flex items-center justify-center shrink-0">
+                    {item.step}
+                  </span>
+                  <div>
+                    <h4 className="text-[11px] font-semibold text-navy-800 leading-none">
+                      {item.title}
+                    </h4>
+                    <p className="text-[10px] text-navy-400 leading-tight mt-0.5 line-clamp-1">
+                      {item.description}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </motion.div>
       </SectionContainer>
 
+      {/* Trust Strip */}
+      <div className="mt-8 border-y border-navy-200/50 bg-white/72 backdrop-blur-sm relative z-10 w-full py-4">
+        <SectionContainer>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 divide-y sm:divide-y-0 sm:divide-x divide-navy-200/40">
+            {[
+              {
+                title: 'Researchers & Faculty',
+                desc: 'Manuscripts, revisions and publication strategy',
+              },
+              {
+                title: 'PhD / PG / UG Scholars',
+                desc: 'Projects, thesis, methodology and technical documentation',
+              },
+              {
+                title: 'Departments & Institutions',
+                desc: 'MoUs, workshops and research capacity-building',
+              },
+              {
+                title: 'Multidisciplinary Research',
+                desc: 'Engineering, computing, healthcare, education and applied research',
+              },
+            ].map((item, i) => (
+              <div key={i} className={`${i > 0 ? 'pt-3 sm:pt-0 sm:pl-5' : ''}`}>
+                <strong className="block text-navy-900 text-[12px] sm:text-[13px] font-semibold">
+                  {item.title}
+                </strong>
+                <span className="block text-navy-500 text-[11px] mt-0.5 leading-snug">
+                  {item.desc}
+                </span>
+              </div>
+            ))}
+          </div>
+        </SectionContainer>
+      </div>
+
       {/* Scroll indicator */}
       <a
-        href="#about"
-        className="absolute bottom-4 sm:bottom-6 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-1.5 text-xs text-navy-400 hover:text-royalBlue-500 transition-colors cursor-pointer group"
-        aria-label="Scroll to explore"
+        href="#services"
+        className="mt-5 mx-auto z-20 flex flex-col items-center gap-1 text-[11px] text-navy-400 hover:text-royalBlue-500 transition-colors cursor-pointer group"
+        aria-label="Scroll to explore services"
       >
-        <span className="font-mono text-[10.5px] tracking-widest uppercase opacity-75 group-hover:opacity-100 transition-opacity">
-          Scroll to Explore
+        <span className="font-mono text-[9.5px] tracking-widest uppercase opacity-70 group-hover:opacity-100 transition-opacity">
+          Explore Services
         </span>
-        <ChevronDown className="w-4 h-4 text-royalBlue-400/80 animate-bounce" />
+        <ChevronDown className="w-4 h-4 text-royalBlue-400/70 animate-bounce" />
       </a>
     </section>
   );
