@@ -57,7 +57,7 @@ function createDocumentTexture(type = 'main') {
 
   ctx.fillStyle = '#2948D8';
   ctx.font = 'bold 16px monospace';
-  ctx.fillText(type === 'secondary' ? 'INDEXED SCOPUS / SCI-E' : 'PEER-REVIEWED MANUSCRIPT', 82, 90);
+  ctx.fillText(type === 'secondary' ? 'Scopus / SCI-E INDEXED' : 'PEER-REVIEWED MANUSCRIPT', 82, 90);
 
   ctx.fillStyle = '#4C6BAD';
   ctx.font = '13px monospace';

@@ -7,7 +7,10 @@ export const siteConfig = {
   brandName: "Brain & Pen",
   brandFullName: "Brain & Pen Research Services",
   brandSubtitle: "Research, Publication & Academic Support",
-  brandTagline: "Quality Research • Standard Publications • Full Support",
+  brandTagline: "Rigorous Research • Ethical Publication Support • End-to-End Academic Support",
+
+  // Logo asset path
+  logoPath: "/assets/brain-and-pen-logo.png",
 
   // Contact Information
   contact: {
@@ -29,13 +32,12 @@ export const siteConfig = {
 
   // Navigation Links
   navLinks: [
+    { name: "Home", href: "#home" },
+    { name: "About", href: "#about" },
     { name: "Services", href: "#services" },
     { name: "Research Areas", href: "#areas" },
     { name: "Publications", href: "#publications" },
-    { name: "Researcher Network", href: "#researcher-network" },
-    { name: "Institutional MoUs", href: "#collaborate" },
-    { name: "About", href: "#about" },
-    { name: "Discuss Your Research", href: "#inquiry" },
+    { name: "Contact", href: "#inquiry" },
   ],
 
   // Form Select Options

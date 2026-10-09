@@ -51,12 +51,12 @@ export default function CTA() {
 
           {/* Heading */}
           <h2 className="font-display font-bold text-3xl sm:text-4xl lg:text-5xl text-white tracking-tight leading-tight mb-5">
-            Ready to Publish Your Research?
+            Ready to Advance Your Research?
           </h2>
 
           {/* Description */}
           <p className="text-white/80 text-sm sm:text-base lg:text-lg max-w-2xl mx-auto mb-9 leading-relaxed font-normal">
-            Take the next step toward developing and publishing your research with professional guidance. Connect with Brain &amp; Pen to evaluate your paper, thesis, patent, or institutional initiative.
+            Take the next step toward developing and publishing your research with professional guidance. Connect with Brain &amp; Pen to evaluate your manuscript, thesis, patent, or institutional research initiative.
           </p>
 
           {/* Action Buttons */}

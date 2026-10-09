@@ -81,7 +81,7 @@ export default function About() {
               <div className="flex items-start gap-3 p-3.5 rounded-xl bg-white/80 border border-navy-200/70 shadow-card-light backdrop-blur-sm">
                 <ShieldCheck className="w-5 h-5 text-royalBlue-500 shrink-0 mt-0.5" />
                 <div>
-                  <h4 className="text-sm font-semibold text-navy-800">Defensible Scholarship</h4>
+                  <h4 className="text-sm font-semibold text-navy-800">Authenticity</h4>
                   <p className="text-xs text-navy-500 mt-1">Focus on authentic research methodology and legitimate publication venues.</p>
                 </div>
               </div>
@@ -147,11 +147,10 @@ export default function About() {
                   <button
                     key={key}
                     onClick={() => setActiveTab(key)}
-                    className={`py-2 px-1 text-xs font-medium rounded-lg transition-all text-center capitalize ${
-                      activeTab === key
+                    className={`py-2 px-1 text-xs font-medium rounded-lg transition-all text-center capitalize ${activeTab === key
                         ? 'bg-royalBlue-500/12 text-royalBlue-600 border border-royalBlue-500/28 shadow-sm font-semibold'
                         : 'text-navy-500 hover:text-navy-700 hover:bg-white/50'
-                    }`}
+                      }`}
                   >
                     {key}
                   </button>

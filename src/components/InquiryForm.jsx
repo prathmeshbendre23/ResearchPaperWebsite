@@ -156,8 +156,8 @@ export default function InquiryForm() {
             <div>
               {/* Badge */}
               <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-royalBlue-500/8 border border-royalBlue-500/20 text-royalBlue-500 text-xs font-mono tracking-wider uppercase mb-5">
-                <Sparkles className="w-3.5 h-3.5" />
-                <span>Confidential Research Consultation</span>
+                <Sparkles className="w-3.5 h-3.5" aria-hidden="true" />
+                <span>Research Consultation</span>
               </div>
 
               {/* Title */}
@@ -170,7 +170,7 @@ export default function InquiryForm() {
 
               {/* Supporting Text */}
               <p className="text-navy-600 text-sm sm:text-base leading-relaxed mb-8 font-normal">
-                Tell us about your research requirement, academic project, publication goal or institutional requirement. Share the details below so we can understand your needs before the first discussion.
+                Tell us about your research requirement, current stage, target publication or academic objective. The information helps us understand the scope before the initial discussion.
               </p>
 
               {/* Key Contact & Advisory Details */}
@@ -242,10 +242,10 @@ export default function InquiryForm() {
                     <CheckCircle className="w-6 h-6 text-emerald-600 shrink-0 mt-0.5" />
                     <div className="flex-1">
                       <h3 className="font-display font-semibold text-lg text-emerald-900 mb-1">
-                        Enquiry Submitted Successfully
+                        Thank you. Your enquiry has been received.
                       </h3>
                       <p className="text-sm text-emerald-700 leading-relaxed mb-3">
-                        {submissionStatus.message}
+                        We will review the research requirements and respond as soon as possible.
                       </p>
                       {submissionStatus.referenceId && (
                         <div className="inline-block px-3 py-1 rounded bg-emerald-100 border border-emerald-300 text-xs font-mono text-emerald-800">
@@ -518,16 +518,16 @@ export default function InquiryForm() {
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-3.5 rounded-xl font-semibold text-sm text-white bg-gradient-to-r from-royalBlue-500 to-violet-500 hover:from-royalBlue-400 hover:to-violet-400 shadow-glow-blue transition-all disabled:opacity-50 disabled:cursor-not-allowed transform active:scale-95"
+                    className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-3.5 rounded-xl font-semibold text-sm text-white bg-gradient-to-r from-royalBlue-500 to-violet-500 hover:from-royalBlue-400 hover:to-violet-400 shadow-glow-blue transition-all disabled:opacity-50 disabled:cursor-not-allowed transform active:scale-95 focus:outline-none focus-visible:ring-2 focus-visible:ring-royalBlue-400"
                   >
                     {isSubmitting ? (
                       <>
-                        <Loader2 className="w-4 h-4 animate-spin" />
+                        <Loader2 className="w-4 h-4 animate-spin" aria-hidden="true" />
                         <span>Sending Enquiry...</span>
                       </>
                     ) : (
                       <>
-                        <Send className="w-4 h-4" />
+                        <Send className="w-4 h-4" aria-hidden="true" />
                         <span>Send Enquiry</span>
                       </>
                     )}
@@ -538,12 +538,25 @@ export default function InquiryForm() {
                     href={getWhatsAppUrl("Hello Brain & Pen, I would like to discuss my research requirement directly.")}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 text-xs font-semibold text-emerald-700 hover:text-emerald-800 px-4 py-2.5 rounded-lg border border-emerald-500/25 hover:border-emerald-500/40 bg-emerald-500/8 transition-colors"
+                    className="inline-flex items-center gap-2 text-xs font-semibold text-emerald-700 hover:text-emerald-800 px-4 py-2.5 rounded-lg border border-emerald-500/25 hover:border-emerald-500/40 bg-emerald-500/8 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
                   >
-                    <MessageCircle className="w-4 h-4" />
+                    <MessageCircle className="w-4 h-4" aria-hidden="true" />
                     <span>Prefer instant discussion? Connect on WhatsApp</span>
                   </a>
                 </div>
+
+                {/* Privacy note */}
+                <p className="text-[11px] text-navy-400 leading-relaxed mt-4 pt-4 border-t border-navy-100">
+                  Your enquiry is used only to understand the requested research service. We do not share your information with third parties.{' '}
+                  <a
+                    href="/privacy-policy.html"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-royalBlue-500 hover:text-royalBlue-600 underline focus:outline-none focus-visible:ring-2 focus-visible:ring-royalBlue-400 rounded"
+                  >
+                    Privacy Policy
+                  </a>
+                </p>
 
               </form>
 
