@@ -98,7 +98,7 @@ export default function Navbar() {
               <a
                 key={item.name}
                 href={item.href}
-                className={`relative px-3 py-2 rounded-lg text-[13px] 2xl:text-[13.5px] font-medium whitespace-nowrap transition-all duration-200 ease-out focus:outline-none focus-visible:ring-2 focus-visible:ring-royalBlue-500 ${isActive
+                className={`relative px-3 py-2 rounded-lg text-[12px] 2xl:text-[13px] font-medium whitespace-nowrap transition-all duration-200 ease-out focus:outline-none focus-visible:ring-2 focus-visible:ring-royalBlue-500 ${isActive
                   ? 'text-royalBlue-600 font-semibold bg-royalBlue-500/[0.07]'
                   : 'text-navy-700 hover:text-royalBlue-600 hover:bg-royalBlue-500/[0.04]'
                   }`}

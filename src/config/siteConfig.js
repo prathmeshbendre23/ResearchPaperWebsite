@@ -37,6 +37,8 @@ export const siteConfig = {
     { name: "Services", href: "#services" },
     { name: "Research Areas", href: "#areas" },
     { name: "Publications", href: "#publications" },
+    { name: "Collaboration", href: "#collaborate" },
+    { name: "FAQ", href: "#faq" },
     { name: "Contact", href: "#inquiry" },
   ],
 

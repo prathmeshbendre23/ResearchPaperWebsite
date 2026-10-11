@@ -386,22 +386,22 @@ export const faqData = [
   {
     id: "guarantee",
     question: "Do you guarantee journal acceptance?",
-    answer: "No. Journal acceptance is determined independently by editors and peer reviewers. We support manuscript quality, methodological rigor, presentation, journal alignment, and submission readiness, but we do not make guaranteed-acceptance claims.",
+    answer: "Journal acceptance is ultimately determined by the journal's editors and peer reviewers. However, we are committed to achieving successful publication through high-quality manuscript development, technical refinement, strategic journal selection, and continuous support throughout the publication process. If a manuscript is rejected, we carefully address the feedback, strengthen the research, and explore suitable alternative journals until a successful publication outcome is achieved. While this process may require time and multiple submissions, we take pride in maintaining a 100% publication success rate for the cases we have handled to date. We strictly prioritize genuine, reputable, and appropriately indexed journals. We do not compromise research integrity by recommending predatory, cloned, fake, or misleadingly advertised fast-acceptance journals, including journals falsely claiming Scopus or Web of Science indexing or those that have been discontinued from indexing. Our priority is not merely getting your paper accepted, but ensuring it is published in a credible journal that adds genuine value to your academic and research career.",
   },
   {
     id: "journal-selection",
     question: "How do you help with journal selection?",
-    answer: "We evaluate your research scope, novelty, methodology, and target indexing requirements, then recommend journals based on fit, credibility, indexing status, and scope alignment. Indexing status is verified against official Scopus and Web of Science sources at the time of recommendation.",
+    answer: "We help you identify the most suitable journals for your research by carefully evaluating its scope, originality, technical quality, and publication objectives. Our recommendations consider journal reputation, indexing in Scopus, SCI/SCIE, Web of Science, and other relevant databases, publication timelines, and journal requirements. We also provide guidance on selecting alternative journals when necessary, helping you pursue publication opportunities that best align with your research and academic goals.",
   },
   {
     id: "revision-support",
     question: "Do you provide manuscript revision support?",
-    answer: "Yes. We provide revision support at pre-submission, peer-review, and post-acceptance stages — including point-by-point reviewer-response letter preparation, technical corrections, major and minor revision handling, and resubmission preparation.",
+    answer: "Absolutely. We offer comprehensive manuscript revision support throughout the publication process, from initial submission to final acceptance. Our services include addressing editorial and reviewer comments, preparing detailed point-by-point response letters, strengthening technical and methodological content, and handling both major and minor revisions. We also assist with manuscript refinement, journal-specific formatting, and resubmission to the same or alternative journals, helping you navigate the peer-review process with confidence.",
   },
   {
     id: "confidentiality",
     question: "Is my research information confidential?",
-    answer: "Yes. Your research drafts, datasets, patent concepts, and intellectual property are treated with strict confidentiality. Submitted information is used solely to evaluate and respond to your requested research service.",
+    answer: "Absolutely. We recognize the importance of protecting your original research, unpublished manuscripts, datasets, patent ideas, and intellectual property. All information shared with us is handled with strict confidentiality and used exclusively for delivering the requested research services. We respect your intellectual ownership and are committed to maintaining the privacy, security, and integrity of your research throughout our engagement.",
   },
   {
     id: "publication-fees",
@@ -411,7 +411,7 @@ export const faqData = [
   {
     id: "thesis-projects",
     question: "Do you support thesis and research projects?",
-    answer: "Yes. We support UG, PG, and PhD research projects and thesis work — covering topic formulation, methodology design, simulation or experimental support, analysis, and thesis documentation.",
+    answer: "Absolutely. We provide comprehensive research and technical guidance for undergraduate (UG), postgraduate (PG), and PhD scholars across various disciplines. Our support covers research topic selection, problem formulation, literature review, methodology development, simulation and experimental implementation, data analysis, result interpretation, and thesis documentation. From initial research planning to final thesis preparation, we offer personalized, structured assistance focused on technical quality, originality, academic standards, and successful research completion.",
   },
   {
     id: "institutional",
