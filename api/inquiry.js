@@ -132,16 +132,31 @@ export default async function handler(req, res) {
       });
     }
 
-    // 4. Check server-side email credentials
-    const apiKey = process.env.RESEND_API_KEY;
-    const receiverEmail = process.env.INQUIRY_RECEIVER_EMAIL;
-    const fromEmail = process.env.RESEND_FROM_EMAIL || 'Brain & Pen Inquiries <onboarding@resend.dev>';
+    // 4. Ensure local environment variables are loaded in local development
+    if (typeof process.loadEnvFile === 'function') {
+      try {
+        process.loadEnvFile('.env.local');
+      } catch {
+        try {
+          process.loadEnvFile('.env');
+        } catch {
+          // Ignore if file doesn't exist
+        }
+      }
+    }
+
+    const apiKey = (process.env.RESEND_API_KEY || '').trim();
+    const receiverEmail = (process.env.INQUIRY_RECEIVER_EMAIL || '').trim();
+    const fromEmail = (process.env.RESEND_FROM_EMAIL || '').trim() || 'Brain & Pen Inquiries <onboarding@resend.dev>';
 
     if (!apiKey || !receiverEmail) {
-      console.error('[api/inquiry] Resend configuration incomplete on server.');
+      const missingVars = [];
+      if (!apiKey) missingVars.push('RESEND_API_KEY');
+      if (!receiverEmail) missingVars.push('INQUIRY_RECEIVER_EMAIL');
+      console.error(`[api/inquiry] Server configuration incomplete. Missing: ${missingVars.join(', ')}`);
       return res.status(500).json({
         success: false,
-        message: 'We could not submit your inquiry right now. Please try again.'
+        message: 'We could not submit your inquiry right now due to a server configuration issue. Please try again later.'
       });
     }
 
@@ -282,10 +297,10 @@ To respond to the applicant, reply directly to this email or send to: ${sanitize
     });
 
     if (error) {
-      console.error('[api/inquiry] Resend dispatch error occurred.');
-      return res.status(500).json({
+      console.error('[api/inquiry] Resend dispatch failed:', error.statusCode || error.name || 'Error', error.message || error);
+      return res.status(502).json({
         success: false,
-        message: 'We could not submit your inquiry right now. Please try again.'
+        message: 'We could not submit your inquiry right now. Please try again or reach out to us directly.'
       });
     }
 
@@ -297,10 +312,10 @@ To respond to the applicant, reply directly to this email or send to: ${sanitize
     });
 
   } catch (err) {
-    console.error('[api/inquiry] Unexpected error processing request.');
+    console.error('[api/inquiry] Unexpected error processing request:', err?.message || err);
     return res.status(500).json({
       success: false,
-      message: 'We could not submit your inquiry right now. Please try again.'
+      message: 'An unexpected error occurred while processing your inquiry. Please try again later.'
     });
   }
 }
