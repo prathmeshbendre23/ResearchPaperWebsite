@@ -32,9 +32,10 @@ export const validateInquiry = (data) => {
   // Phone number validation (optional; validate only if provided)
   const phoneVal = (data.phone || "").trim();
   if (phoneVal) {
-    const phoneClean = phoneVal.replace(/[\s\-\(\)]/g, "");
-    if (phoneClean.length < 7 || phoneClean.length > 25 || !/^\+?[0-9]{7,25}$/.test(phoneClean)) {
-      errors.phone = "Please provide a valid phone number (7 to 20 digits).";
+    const phoneClean = phoneVal.replace(/[\s\-()]/g, "");
+    const indianMobileRegex = /^(?:\+91|91)?[6-9]\d{9}$/;
+    if (!indianMobileRegex.test(phoneClean)) {
+      errors.phone = "Please enter a valid 10-digit Indian mobile number.";
     }
   }
 

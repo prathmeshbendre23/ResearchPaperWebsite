@@ -40,9 +40,10 @@ function validateInput(payload) {
   }
 
   // Optional field: Phone / WhatsApp (validate only if provided)
-  const phoneClean = phone.replace(/[\s\-\(\)]/g, '');
+  const phoneClean = phone.replace(/[\s\-()]/g, '');
   if (phoneClean.length > 0) {
-    if (phoneClean.length < 7 || phoneClean.length > 25 || !/^\+?[0-9]{7,25}$/.test(phoneClean)) {
+    const indianMobileRegex = /^(?:\+91|91)?[6-9]\d{9}$/;
+    if (!indianMobileRegex.test(phoneClean)) {
       errors.push('phone');
     }
   }
@@ -99,6 +100,9 @@ function generateReferenceId() {
  * Vercel Serverless API Route Handler: /api/inquiry
  */
 export default async function handler(req, res) {
+  const reqId = req.headers['x-vercel-id'] || req.headers['x-request-id'] || 'local';
+  console.log(`[api/inquiry] [Stage 1/6] Request received. Method: ${req.method}, ReqId: ${reqId}`);
+
   // 1. HTTP Method check
   if (req.method !== 'POST') {
     res.setHeader('Allow', ['POST']);
@@ -115,6 +119,7 @@ export default async function handler(req, res) {
       try {
         body = JSON.parse(body);
       } catch {
+        console.warn(`[api/inquiry] [Stage 2/6] Payload JSON parse error. ReqId: ${reqId}`);
         return res.status(400).json({
           success: false,
           message: 'Invalid request format.'
@@ -122,15 +127,18 @@ export default async function handler(req, res) {
       }
     }
     body = body || {};
+    console.log(`[api/inquiry] [Stage 2/6] Payload parsed successfully. Keys received: ${Object.keys(body).length}`);
 
     // 3. Strict server-side validation
     const { isValid, sanitized } = validateInput(body);
     if (!isValid) {
+      console.warn(`[api/inquiry] [Stage 3/6] Validation failed. ReqId: ${reqId}`);
       return res.status(400).json({
         success: false,
         message: 'Please check all required fields and provide valid information.'
       });
     }
+    console.log(`[api/inquiry] [Stage 3/6] Validation completed successfully.`);
 
     // 4. Ensure local environment variables are loaded in local development
     if (typeof process.loadEnvFile === 'function') {
@@ -147,18 +155,38 @@ export default async function handler(req, res) {
 
     const apiKey = (process.env.RESEND_API_KEY || '').trim();
     const receiverEmail = (process.env.INQUIRY_RECEIVER_EMAIL || '').trim();
-    const fromEmail = (process.env.RESEND_FROM_EMAIL || '').trim() || 'Brain & Pen Inquiries <onboarding@resend.dev>';
+    let fromEmail = (process.env.RESEND_FROM_EMAIL || '').trim();
+
+    // Guard against invalid sender configurations:
+    // Resend strictly prohibits using free public webmail domains (e.g. gmail.com, yahoo.com, outlook.com)
+    // as sender addresses because SPF/DKIM cannot be verified on third-party domains.
+    // If RESEND_FROM_EMAIL is mistakenly set to a public webmail domain, invalid format, or left blank, fall back to Resend's verified onboarding sender.
+    const extractedSender = fromEmail.replace(/.*<([^>]+)>.*/, '$1').trim();
+    const isPublicWebmail = /@(gmail|googlemail|yahoo|hotmail|outlook|live|icloud|aol)\.com$/i.test(extractedSender);
+    const isValidSenderFormat = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(extractedSender);
+    if (!fromEmail || isPublicWebmail || !isValidSenderFormat) {
+      if (isPublicWebmail) {
+        console.warn(`[api/inquiry] [Stage 4/6] RESEND_FROM_EMAIL contains public webmail address (${fromEmail.replace(/.*@/, '*@')}). Free webmail domains cannot be verified or used as senders in Resend. Falling back to default testing sender 'Brain & Pen Inquiries <onboarding@resend.dev>'.`);
+      } else if (fromEmail && !isValidSenderFormat) {
+        console.warn(`[api/inquiry] [Stage 4/6] RESEND_FROM_EMAIL has invalid format (${fromEmail}). Falling back to default testing sender 'Brain & Pen Inquiries <onboarding@resend.dev>'.`);
+      }
+      fromEmail = 'Brain & Pen Inquiries <onboarding@resend.dev>';
+    }
 
     if (!apiKey || !receiverEmail) {
       const missingVars = [];
       if (!apiKey) missingVars.push('RESEND_API_KEY');
       if (!receiverEmail) missingVars.push('INQUIRY_RECEIVER_EMAIL');
-      console.error(`[api/inquiry] Server configuration incomplete. Missing: ${missingVars.join(', ')}`);
+      console.error(`[api/inquiry] [Stage 4/6] Server configuration incomplete. Missing: ${missingVars.join(', ')}`);
       return res.status(500).json({
         success: false,
         message: 'We could not submit your inquiry right now due to a server configuration issue. Please try again later.'
       });
     }
+
+    const receiverDomain = receiverEmail.includes('@') ? receiverEmail.split('@')[1] : 'invalid';
+    const fromDomain = fromEmail.includes('@') ? fromEmail.replace(/.*@/, '').replace('>', '') : 'invalid';
+    console.log(`[api/inquiry] [Stage 4/6] Email client initialized. Sender domain: @${fromDomain}, Receiver domain: @${receiverDomain}`);
 
     // 5. Generate tracking reference and timestamps
     const referenceId = generateReferenceId();
@@ -286,8 +314,9 @@ To respond to the applicant, reply directly to this email or send to: ${sanitize
     `.trim();
 
     // 7. Dispatch via Resend API
+    console.log(`[api/inquiry] [Stage 5/6] Email send attempted. Reference: ${referenceId}`);
     const resend = new Resend(apiKey);
-    const { error } = await resend.emails.send({
+    const { data, error } = await resend.emails.send({
       from: fromEmail,
       to: [receiverEmail],
       replyTo: sanitized.email,
@@ -297,12 +326,14 @@ To respond to the applicant, reply directly to this email or send to: ${sanitize
     });
 
     if (error) {
-      console.error('[api/inquiry] Resend dispatch failed:', error.statusCode || error.name || 'Error', error.message || error);
+      console.error(`[api/inquiry] [Stage 6/6] Email provider response: REJECTED. Status: ${error.statusCode || error.status || 502} (${error.name || 'Error'}). Message: ${error.message || error}`);
       return res.status(502).json({
         success: false,
         message: 'We could not submit your inquiry right now. Please try again or reach out to us directly.'
       });
     }
+
+    console.log(`[api/inquiry] [Stage 6/6] Email provider response: ACCEPTED. Email ID: ${data?.id}, Reference: ${referenceId}`);
 
     // 8. Return success response
     return res.status(200).json({
@@ -313,6 +344,12 @@ To respond to the applicant, reply directly to this email or send to: ${sanitize
 
   } catch (err) {
     console.error('[api/inquiry] Unexpected error processing request:', err?.message || err);
+    if (err?.message?.includes('JSON') || err instanceof SyntaxError || err?.type === 'entity.parse.failed') {
+      return res.status(400).json({
+        success: false,
+        message: 'Invalid request format.'
+      });
+    }
     return res.status(500).json({
       success: false,
       message: 'An unexpected error occurred while processing your inquiry. Please try again later.'

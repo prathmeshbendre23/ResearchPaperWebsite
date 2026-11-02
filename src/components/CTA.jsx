@@ -7,9 +7,8 @@ import { ArrowRight, MessageCircle, Sparkles } from 'lucide-react';
 export default function CTA() {
   return (
     <section
-      className="py-24 relative overflow-hidden w-full"
+      className="py-24 relative overflow-hidden w-full section-pearl"
       aria-label="Call to Action"
-      style={{ background: 'rgba(248,249,255,0.70)' }}
     >
       <SectionContainer>
         <motion.div

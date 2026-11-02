@@ -9,9 +9,8 @@ export default function Publications() {
   return (
     <section
       id="publications"
-      className="py-24 relative w-full overflow-hidden"
+      className="py-24 relative w-full overflow-hidden section-pearl-alt"
       aria-label="Publication Pathways and Scholarly Outputs"
-      style={{ background: 'rgba(255,255,255,0.85)' }}
     >
       {/* Scientific grid */}
       <div className="absolute inset-0 scientific-grid-light-bg opacity-60 pointer-events-none" />
@@ -44,76 +43,76 @@ export default function Publications() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: '-40px' }}
             transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-            className="lg:col-span-5 rounded-2xl bg-white/90 border border-navy-200/80 p-7 sm:p-8 shadow-card-light lg:sticky lg:top-24"
+            className="lg:col-span-5 rounded-2xl bg-white/90 dark:bg-academic-900/90 border border-navy-200/80 dark:border-navy-700/80 p-7 sm:p-8 shadow-card-light dark:shadow-[0_8px_32px_-8px_rgba(0,0,0,0.5)] lg:sticky lg:top-24"
           >
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-royalBlue-500/8 border border-royalBlue-500/20 text-royalBlue-600 text-xs font-mono tracking-wider uppercase mb-4">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-royalBlue-500/8 dark:bg-royalBlue-500/18 border border-royalBlue-500/20 dark:border-royalBlue-400/30 text-royalBlue-600 dark:text-softBlue-400 text-xs font-mono tracking-wider uppercase mb-4">
               <span>Publication Strategy</span>
             </div>
 
-            <h3 className="font-display font-bold text-xl sm:text-2xl text-navy-900 leading-snug mb-3">
+            <h3 className="font-display font-bold text-xl sm:text-2xl text-navy-900 dark:text-white leading-snug mb-3">
               {publicationStrategyData.heading}
             </h3>
 
-            <p className="text-navy-600 text-xs sm:text-sm leading-relaxed mb-6">
+            <p className="text-navy-600 dark:text-slate-300 text-xs sm:text-sm leading-relaxed mb-6">
               {publicationStrategyData.description}
             </p>
 
             {/* 4 Strategy Values */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6">
-              <div className="p-3.5 rounded-xl bg-pearl-100/90 border border-navy-200/60">
+              <div className="p-3.5 rounded-xl bg-pearl-100/90 dark:bg-academic-950/80 border border-navy-200/60 dark:border-navy-800/80">
                 <div className="flex items-center gap-2 mb-1">
-                  <CheckCircle2 className="w-4 h-4 text-royalBlue-500 shrink-0" />
-                  <strong className="text-xs font-semibold text-navy-800">Journal Verification</strong>
+                  <CheckCircle2 className="w-4 h-4 text-royalBlue-500 dark:text-softBlue-400 shrink-0" />
+                  <strong className="text-xs font-semibold text-navy-800 dark:text-slate-100">Journal Verification</strong>
                 </div>
-                <p className="text-[11px] text-navy-500 leading-relaxed">
+                <p className="text-[11px] text-navy-500 dark:text-slate-400 leading-relaxed">
                   Indexing status, publisher identity, journal continuity and scope are checked before recommendation.
                 </p>
               </div>
 
-              <div className="p-3.5 rounded-xl bg-pearl-100/90 border border-navy-200/60">
+              <div className="p-3.5 rounded-xl bg-pearl-100/90 dark:bg-academic-950/80 border border-navy-200/60 dark:border-navy-800/80">
                 <div className="flex items-center gap-2 mb-1">
-                  <Tag className="w-4 h-4 text-emerald-500 shrink-0" />
-                  <strong className="text-xs font-semibold text-navy-800">Affordable Support</strong>
+                  <Tag className="w-4 h-4 text-emerald-500 dark:text-emerald-400 shrink-0" />
+                  <strong className="text-xs font-semibold text-navy-800 dark:text-slate-100">Affordable Support</strong>
                 </div>
-                <p className="text-[11px] text-navy-500 leading-relaxed">
+                <p className="text-[11px] text-navy-500 dark:text-slate-400 leading-relaxed">
                   Transparent service scope and practical pricing based on the actual research requirement.
                 </p>
               </div>
 
-              <div className="p-3.5 rounded-xl bg-pearl-100/90 border border-navy-200/60">
+              <div className="p-3.5 rounded-xl bg-pearl-100/90 dark:bg-academic-950/80 border border-navy-200/60 dark:border-navy-800/80">
                 <div className="flex items-center gap-2 mb-1">
-                  <RefreshCw className="w-4 h-4 text-violet-500 shrink-0" />
-                  <strong className="text-xs font-semibold text-navy-800">Revision Support</strong>
+                  <RefreshCw className="w-4 h-4 text-violet-500 dark:text-violet-400 shrink-0" />
+                  <strong className="text-xs font-semibold text-navy-800 dark:text-slate-100">Revision Support</strong>
                 </div>
-                <p className="text-[11px] text-navy-500 leading-relaxed">
+                <p className="text-[11px] text-navy-500 dark:text-slate-400 leading-relaxed">
                   Technical revision, reviewer responses, resubmission strategy and manuscript strengthening.
                 </p>
               </div>
 
-              <div className="p-3.5 rounded-xl bg-pearl-100/90 border border-navy-200/60">
+              <div className="p-3.5 rounded-xl bg-pearl-100/90 dark:bg-academic-950/80 border border-navy-200/60 dark:border-navy-800/80">
                 <div className="flex items-center gap-2 mb-1">
-                  <ShieldCheck className="w-4 h-4 text-softBlue-500 shrink-0" />
-                  <strong className="text-xs font-semibold text-navy-800">Authentic Guidance</strong>
+                  <ShieldCheck className="w-4 h-4 text-softBlue-500 dark:text-softBlue-400 shrink-0" />
+                  <strong className="text-xs font-semibold text-navy-800 dark:text-slate-100">Authentic Guidance</strong>
                 </div>
-                <p className="text-[11px] text-navy-500 leading-relaxed">
+                <p className="text-[11px] text-navy-500 dark:text-slate-400 leading-relaxed">
                   Focus on legitimate scholarly venues and defensible publication practices.
                 </p>
               </div>
             </div>
 
             {/* Desk Rejection Banner */}
-            <div className="p-4 rounded-xl bg-gradient-to-r from-royalBlue-500/10 to-violet-500/10 border border-royalBlue-500/25 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <div className="p-4 rounded-xl bg-gradient-to-r from-royalBlue-500/10 to-violet-500/10 dark:from-royalBlue-500/20 dark:to-violet-500/20 border border-royalBlue-500/25 dark:border-royalBlue-400/35 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
               <div>
-                <strong className="block text-navy-900 text-xs sm:text-sm font-semibold">
+                <strong className="block text-navy-900 dark:text-white text-xs sm:text-sm font-semibold">
                   {publicationStrategyData.deskRejection.title}
                 </strong>
-                <span className="block text-navy-600 text-xs mt-0.5">
+                <span className="block text-navy-600 dark:text-slate-300 text-xs mt-0.5">
                   {publicationStrategyData.deskRejection.description}
                 </span>
               </div>
               <a
                 href={publicationStrategyData.deskRejection.ctaHref}
-                className="inline-flex items-center gap-1.5 text-xs font-semibold text-royalBlue-600 hover:text-royalBlue-700 shrink-0"
+                className="inline-flex items-center gap-1.5 text-xs font-semibold text-royalBlue-600 dark:text-softBlue-400 hover:text-royalBlue-700 dark:hover:text-softBlue-300 shrink-0 transition-colors"
               >
                 <span>{publicationStrategyData.deskRejection.ctaText}</span>
               </a>
@@ -132,21 +131,21 @@ export default function Publications() {
                 className="academic-card p-6 sm:p-7 rounded-2xl flex flex-col sm:flex-row items-start gap-5 group"
               >
                 {/* Tag Badge */}
-                <div className="w-24 sm:w-28 shrink-0 py-2.5 px-3 rounded-xl bg-royalBlue-500/8 border border-royalBlue-500/22 text-center text-xs font-mono font-bold text-royalBlue-600 shadow-sm">
+                <div className="w-24 sm:w-28 shrink-0 py-2.5 px-3 rounded-xl bg-royalBlue-500/8 dark:bg-royalBlue-500/18 border border-royalBlue-500/22 dark:border-royalBlue-400/30 text-center text-xs font-mono font-bold text-royalBlue-600 dark:text-softBlue-400 shadow-sm">
                   {pathway.tag}
                 </div>
 
                 {/* Content */}
                 <div className="flex-1 min-w-0">
-                  <h4 className="font-display font-semibold text-base sm:text-lg text-navy-900 group-hover:text-royalBlue-600 transition-colors mb-2">
+                  <h4 className="font-display font-semibold text-base sm:text-lg text-navy-900 dark:text-white group-hover:text-royalBlue-600 dark:group-hover:text-softBlue-400 transition-colors mb-2">
                     {pathway.title}
                   </h4>
-                  <p className="text-navy-600 text-xs sm:text-sm leading-relaxed mb-3">
+                  <p className="text-navy-600 dark:text-slate-300 text-xs sm:text-sm leading-relaxed mb-3">
                     {pathway.description}
                   </p>
                   <a
                     href="#inquiry"
-                    className="inline-flex items-center gap-1.5 text-xs font-medium text-royalBlue-600 hover:text-royalBlue-700"
+                    className="inline-flex items-center gap-1.5 text-xs font-medium text-royalBlue-600 dark:text-softBlue-400 hover:text-royalBlue-700 dark:hover:text-softBlue-300 transition-colors"
                   >
                     <span>Discuss this pathway</span>
                     <ArrowRight className="w-3.5 h-3.5 transform group-hover:translate-x-1 transition-transform" />

@@ -19,6 +19,18 @@
     --clr-blob-3:    rgba(109,140, 255, 0.10);
   }
 
+  html.dark {
+    color-scheme: dark;
+    --clr-bg:        #030712;
+    --clr-navy:      #F8FAFC;
+    --clr-royal:     #60A5FA;
+    --clr-soft-blue: #93C5FD;
+    --clr-violet:    #A78BFA;
+    --clr-blob-1:    rgba(59, 130, 246, 0.14);
+    --clr-blob-2:    rgba(147, 51, 234, 0.11);
+    --clr-blob-3:    rgba(96, 165, 250, 0.09);
+  }
+
   html {
     scroll-behavior: smooth;
   }
@@ -28,6 +40,7 @@
     color: var(--clr-navy);
     font-family: 'Inter', sans-serif;
     overflow-x: hidden;
+    transition: background-color 0.3s ease, color 0.3s ease;
   }
 
   /* Accessible focus rings */
@@ -39,12 +52,16 @@
 }
 
 /* ═══════════════════════════════════════════════════════════════════
-   SCROLLBAR — Light theme
+   SCROLLBAR — Light & Dark themes
 ═══════════════════════════════════════════════════════════════════ */
 ::-webkit-scrollbar          { width: 6px; }
 ::-webkit-scrollbar-track    { background: #EEF0FB; }
 ::-webkit-scrollbar-thumb    { background: #A8B6D9; border-radius: 4px; }
 ::-webkit-scrollbar-thumb:hover { background: #7A90C3; }
+
+.dark ::-webkit-scrollbar-track    { background: #060d1d; }
+.dark ::-webkit-scrollbar-thumb    { background: #1e293b; border-radius: 4px; }
+.dark ::-webkit-scrollbar-thumb:hover { background: #334155; }
 
 /* ═══════════════════════════════════════════════════════════════════
    LIVING BACKGROUND LAYERS — Premium Atmospheric System
@@ -77,6 +94,16 @@
     #F4F0FF  48%,
     #EDE8FF  72%,
     #E8E3FF 100%
+  );
+  transition: background 0.4s ease;
+}
+
+.dark .living-bg-gradient {
+  background: radial-gradient(
+    circle at 50% 15%,
+    #0a142c 0%,
+    #060d1d 55%,
+    #030712 100%
   );
 }
 
@@ -215,6 +242,55 @@
   animation: orbitalSpin 96s linear infinite;
 }
 
+/* Dark mode atmospheric blobs & orbitals */
+.dark .living-bg-blob-1 {
+  background: radial-gradient(
+    ellipse at 40% 40%,
+    rgba(59, 130, 246, 0.16) 0%,
+    rgba(37, 99, 235, 0.07) 40%,
+    transparent 100%
+  );
+}
+
+.dark .living-bg-blob-2 {
+  background: radial-gradient(
+    ellipse at 55% 45%,
+    rgba(139, 92, 246, 0.14) 0%,
+    rgba(124, 58, 237, 0.06) 45%,
+    transparent 100%
+  );
+}
+
+.dark .living-bg-blob-3 {
+  background: radial-gradient(
+    ellipse at 50% 50%,
+    rgba(14, 165, 233, 0.12) 0%,
+    rgba(2, 132, 199, 0.05) 50%,
+    transparent 100%
+  );
+}
+
+.dark .living-bg-blob-4 {
+  background: radial-gradient(
+    ellipse at 50% 50%,
+    rgba(168, 85, 247, 0.10) 0%,
+    rgba(196, 181, 253, 0.03) 55%,
+    transparent 100%
+  );
+}
+
+.dark .orbital-ring-1 {
+  border-color: rgba(96, 165, 250, 0.08);
+}
+
+.dark .orbital-ring-2 {
+  border-color: rgba(167, 139, 250, 0.07);
+}
+
+.dark .orbital-ring-3 {
+  border-color: rgba(56, 189, 248, 0.07);
+}
+
 /* ═══════════════════════════════════════════════════════════════════
    SCIENTIFIC GRID BACKGROUNDS
 ═══════════════════════════════════════════════════════════════════ */
@@ -226,6 +302,12 @@
     linear-gradient(to bottom, rgba(41, 72, 216, 0.04) 1px, transparent 1px);
 }
 
+.dark .scientific-grid-light-bg {
+  background-image:
+    linear-gradient(to right,  rgba(56, 189, 248, 0.035) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(56, 189, 248, 0.035) 1px, transparent 1px);
+}
+
 /* Legacy dark grid (footer / dark panels only) */
 .scientific-grid-bg {
   background-size: 40px 40px;
@@ -235,7 +317,7 @@
 }
 
 /* ═══════════════════════════════════════════════════════════════════
-   GLASS UTILITIES — Light theme
+   GLASS UTILITIES — Light & Dark theme
 ═══════════════════════════════════════════════════════════════════ */
 
 .academic-glass {
@@ -245,11 +327,21 @@
   border: 1px solid rgba(41, 72, 216, 0.12);
 }
 
+.dark .academic-glass {
+  background: rgba(10, 20, 44, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
 .academic-glass-subtle {
   background: rgba(255, 255, 255, 0.58);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid rgba(41, 72, 216, 0.08);
+}
+
+.dark .academic-glass-subtle {
+  background: rgba(6, 13, 29, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .academic-glass-interactive {
@@ -258,6 +350,11 @@
   -webkit-backdrop-filter: blur(14px);
   border: 1px solid rgba(41, 72, 216, 0.10);
   transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.dark .academic-glass-interactive {
+  background: rgba(10, 20, 44, 0.70);
+  border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .academic-glass-interactive:hover {
@@ -269,6 +366,14 @@
   transform: translateY(-2px);
 }
 
+.dark .academic-glass-interactive:hover {
+  background: rgba(15, 31, 61, 0.90);
+  border-color: rgba(96, 165, 250, 0.35);
+  box-shadow:
+    0 10px 32px -8px rgba(0, 0, 0, 0.5),
+    0 0  20px  0   rgba(96, 165, 250, 0.12);
+}
+
 /* ═══════════════════════════════════════════════════════════════════
    SECTION BACKGROUND UTILITIES
    Subtle alternation: white → lavender-tint → pearl → white
@@ -278,16 +383,32 @@
   background-color: rgba(247, 248, 255, 0.88);
 }
 
+.dark .section-pearl {
+  background-color: rgba(6, 13, 29, 0.75);
+}
+
 .section-pearl-alt {
   background-color: rgba(255, 255, 255, 0.92);
+}
+
+.dark .section-pearl-alt {
+  background-color: rgba(10, 20, 44, 0.70);
 }
 
 .section-lavender {
   background-color: rgba(234, 230, 255, 0.28);
 }
 
+.dark .section-lavender {
+  background-color: rgba(22, 17, 48, 0.40);
+}
+
 .section-blue-tint {
   background-color: rgba(219, 234, 254, 0.22);
+}
+
+.dark .section-blue-tint {
+  background-color: rgba(12, 28, 58, 0.40);
 }
 
 /* Dark footer */
@@ -310,6 +431,11 @@
     background   0.28s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+.dark .academic-card {
+  background: rgba(10, 20, 44, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
 .academic-card:hover {
   transform:    translateY(-5px);
   background:   rgba(255, 255, 255, 0.97);
@@ -317,6 +443,14 @@
   box-shadow:
     0 14px 40px -8px  rgba(41, 72, 216, 0.15),
     0 0   26px  0     rgba(139, 109, 255, 0.08);
+}
+
+.dark .academic-card:hover {
+  background:   rgba(15, 31, 61, 0.90);
+  border-color: rgba(96, 165, 250, 0.35);
+  box-shadow:
+    0 14px 40px -8px rgba(0, 0, 0, 0.6),
+    0 0   26px  0    rgba(96, 165, 250, 0.12);
 }
 
 /* ═══════════════════════════════════════════════════════════════════
@@ -349,6 +483,12 @@
   border: 1px solid rgba(41, 72, 216, 0.17);
 }
 
+.dark .badge-royal {
+  color: #93c5fd;
+  background: rgba(59, 130, 246, 0.14);
+  border-color: rgba(59, 130, 246, 0.30);
+}
+
 /* ═══════════════════════════════════════════════════════════════════
    HERO MOUSE PARALLAX CONTAINER
 ═══════════════════════════════════════════════════════════════════ */
@@ -360,7 +500,7 @@
 }
 
 /* ═══════════════════════════════════════════════════════════════════
-   INQUIRY FORM — light panel
+   INQUIRY FORM — light & dark panel
 ═══════════════════════════════════════════════════════════════════ */
 
 .form-panel {
@@ -368,6 +508,11 @@
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   border: 1px solid rgba(41, 72, 216, 0.09);
+}
+
+.dark .form-panel {
+  background: rgba(6, 13, 29, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 /* ═══════════════════════════════════════════════════════════════════
@@ -407,6 +552,70 @@
   padding: 0.28rem 0.85rem;
   border-radius: 9999px;
   margin-bottom: 1rem;
+}
+
+.dark .section-eyebrow {
+  color: #93c5fd;
+  background: rgba(59, 130, 246, 0.12);
+  border-color: rgba(59, 130, 246, 0.28);
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   MODERN INTERACTIVE HOVER UTILITIES
+   Subtle lift, smooth transitions, refined shadows (180-300ms)
+═══════════════════════════════════════════════════════════════════ */
+
+/* Smooth transitions for all interactive elements */
+a, button, input, select, textarea {
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform;
+  transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+  transition-duration: 200ms;
+}
+
+/* Subtle button lift and shadow refinement */
+.btn-interactive {
+  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.22s cubic-bezier(0.16, 1, 0.3, 1),
+              background-color 0.22s ease,
+              border-color 0.22s ease;
+}
+
+.btn-interactive:hover {
+  transform: translateY(-2px);
+}
+
+.btn-interactive:active {
+  transform: translateY(0);
+}
+
+/* Card hover lift & glow enhancement */
+.card-hover-subtle {
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+              background-color 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.card-hover-subtle:hover {
+  transform: translateY(-4px);
+}
+
+/* Image slight zoom */
+.img-zoom-hover {
+  overflow: hidden;
+}
+
+.img-zoom-hover img {
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.img-zoom-hover:hover img {
+  transform: scale(1.03);
+}
+
+/* Form input focus improvement */
+input:focus, select:focus, textarea:focus {
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
 }
 
 /* ═══════════════════════════════════════════════════════════════════

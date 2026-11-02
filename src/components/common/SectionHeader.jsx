@@ -17,13 +17,13 @@ export default function SectionHeader({
 }) {
   const isCenter = align === 'center';
 
-  // Badge colour variants — all light-theme
+  // Badge colour variants — light and dark
   const badgeStyles =
     badgeColor === 'violet'
-      ? 'bg-violet-500/8 border-violet-500/22 text-violet-600'
+      ? 'bg-violet-500/8 dark:bg-violet-500/15 border-violet-500/22 dark:border-violet-500/30 text-violet-600 dark:text-violet-400'
       : badgeColor === 'indigo'
-      ? 'bg-indigo-500/8 border-indigo-500/22 text-indigo-600'
-      : 'bg-royalBlue-500/8 border-royalBlue-500/22 text-royalBlue-500';
+      ? 'bg-indigo-500/8 dark:bg-indigo-500/15 border-indigo-500/22 dark:border-indigo-500/30 text-indigo-600 dark:text-indigo-400'
+      : 'bg-royalBlue-500/8 dark:bg-royalBlue-500/15 border-royalBlue-500/22 dark:border-royalBlue-500/30 text-royalBlue-500 dark:text-softBlue-400';
 
   return (
     <div
@@ -50,7 +50,7 @@ export default function SectionHeader({
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-50px' }}
           transition={{ duration: 0.6, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-          className="font-display font-bold text-3xl sm:text-4xl lg:text-[42px] text-navy-900 tracking-tight leading-tight mb-4"
+          className="font-display font-bold text-3xl sm:text-4xl lg:text-[42px] text-navy-900 dark:text-white tracking-tight leading-tight mb-4"
         >
           {title}{' '}
           {titleHighlight && (
@@ -67,7 +67,7 @@ export default function SectionHeader({
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-50px' }}
           transition={{ duration: 0.6, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-          className="text-navy-500 text-sm sm:text-base lg:text-[17px] leading-relaxed font-normal"
+          className="text-navy-500 dark:text-slate-300 text-sm sm:text-base lg:text-[17px] leading-relaxed font-normal"
         >
           {description}
         </motion.p>

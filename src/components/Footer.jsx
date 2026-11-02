@@ -29,7 +29,7 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="bg-academic-950 border-t border-navy-700/60 text-slate-400 text-xs relative z-10 w-full" aria-label="Site Footer">
+    <footer className="bg-slate-50 dark:bg-academic-950 border-t border-slate-200 dark:border-navy-700/60 text-slate-600 dark:text-slate-400 text-xs relative z-10 w-full transition-colors duration-300" aria-label="Site Footer">
       <SectionContainer className="py-16">
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 mb-12">
@@ -50,16 +50,16 @@ export default function Footer() {
                 width="36"
                 height="36"
               />
-              <span className="font-display font-bold text-lg text-white tracking-tight group-hover:text-softBlue-300 transition-colors">
+              <span className="font-display font-bold text-lg text-slate-900 dark:text-white tracking-tight group-hover:text-royalBlue-600 dark:group-hover:text-softBlue-300 transition-colors">
                 {siteConfig.brandName}
               </span>
             </a>
 
-            <p className="text-[11px] sm:text-xs font-mono text-royalBlue-400 tracking-wider">
+            <p className="text-[11px] sm:text-xs font-mono text-royalBlue-600 dark:text-royalBlue-400 tracking-wider">
               {siteConfig.brandTagline}
             </p>
 
-            <p className="text-slate-400 leading-relaxed text-xs sm:text-sm">
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed text-xs sm:text-sm">
               A research and scholarly publication consultancy supporting researchers, faculty, and institutions across research design, manuscript development, journal selection, revision, thesis, patents, and academic collaboration.
             </p>
 
@@ -68,7 +68,7 @@ export default function Footer() {
                 href={getWhatsAppUrl()}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-3.5 py-2 rounded-lg text-xs font-medium text-emerald-400 bg-emerald-500/10 hover:bg-emerald-500/20 border border-emerald-500/25 transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400"
+                className="inline-flex items-center gap-2 px-3.5 py-2 rounded-lg text-xs font-medium text-emerald-700 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-500/10 hover:bg-emerald-100/80 dark:hover:bg-emerald-500/20 border border-emerald-200/80 dark:border-emerald-500/25 transition-all shadow-sm dark:shadow-none hover:-translate-y-0.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400"
                 aria-label="Chat on WhatsApp"
               >
                 <MessageCircle className="w-4 h-4" aria-hidden="true" />
@@ -79,7 +79,7 @@ export default function Footer() {
 
           {/* Quick Nav Links (Cols 5-6) */}
           <div className="lg:col-span-2 space-y-3">
-            <h3 className="font-display font-semibold text-white text-sm uppercase tracking-wider">
+            <h3 className="font-display font-semibold text-slate-900 dark:text-white text-sm uppercase tracking-wider">
               Navigation
             </h3>
             <ul className="space-y-2">
@@ -87,7 +87,7 @@ export default function Footer() {
                 <li key={item.name}>
                   <a
                     href={item.href}
-                    className="text-slate-400 hover:text-softBlue-400 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-royalBlue-400 rounded"
+                    className="text-slate-600 hover:text-royalBlue-600 dark:text-slate-400 dark:hover:text-softBlue-400 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-royalBlue-400 rounded inline-block hover:translate-x-1 duration-200"
                   >
                     {item.name}
                   </a>
@@ -98,7 +98,7 @@ export default function Footer() {
 
           {/* Services Directory (Cols 7-9) */}
           <div className="lg:col-span-3 space-y-3">
-            <h3 className="font-display font-semibold text-white text-sm uppercase tracking-wider">
+            <h3 className="font-display font-semibold text-slate-900 dark:text-white text-sm uppercase tracking-wider">
               Services
             </h3>
             <ul className="space-y-2">
@@ -106,7 +106,7 @@ export default function Footer() {
                 <li key={svc.id}>
                   <a
                     href="#services"
-                    className="text-slate-400 hover:text-softBlue-400 transition-colors truncate block focus:outline-none focus-visible:ring-2 focus-visible:ring-royalBlue-400 rounded"
+                    className="text-slate-600 hover:text-royalBlue-600 dark:text-slate-400 dark:hover:text-softBlue-400 transition-colors truncate block focus:outline-none focus-visible:ring-2 focus-visible:ring-royalBlue-400 rounded hover:translate-x-1 duration-200"
                   >
                     {svc.title}
                   </a>
@@ -117,25 +117,25 @@ export default function Footer() {
 
           {/* Contact Information (Cols 10-12) */}
           <div className="lg:col-span-3 space-y-3">
-            <h3 className="font-display font-semibold text-white text-sm uppercase tracking-wider">
+            <h3 className="font-display font-semibold text-slate-900 dark:text-white text-sm uppercase tracking-wider">
               Contact
             </h3>
             <ul className="space-y-3">
               <li className="flex items-start gap-2.5">
-                <Mail className="w-4 h-4 text-royalBlue-400 shrink-0 mt-0.5" aria-hidden="true" />
-                <a href={`mailto:${siteConfig.contact.email}`} className="text-slate-300 hover:text-softBlue-400 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-royalBlue-400 rounded">
+                <Mail className="w-4 h-4 text-royalBlue-600 dark:text-royalBlue-400 shrink-0 mt-0.5" aria-hidden="true" />
+                <a href={`mailto:${siteConfig.contact.email}`} className="text-slate-700 hover:text-royalBlue-600 dark:text-slate-300 dark:hover:text-softBlue-400 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-royalBlue-400 rounded">
                   {siteConfig.contact.email}
                 </a>
               </li>
               <li className="flex items-start gap-2.5">
-                <Phone className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" aria-hidden="true" />
-                <a href={`tel:${siteConfig.contact.phoneRaw}`} className="text-slate-300 hover:text-emerald-400 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 rounded">
+                <Phone className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0 mt-0.5" aria-hidden="true" />
+                <a href={`tel:${siteConfig.contact.phoneRaw}`} className="text-slate-700 hover:text-emerald-600 dark:text-slate-300 dark:hover:text-emerald-400 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 rounded">
                   {siteConfig.contact.phone}
                 </a>
               </li>
               <li className="flex items-start gap-2.5">
-                <MapPin className="w-4 h-4 text-slate-500 shrink-0 mt-0.5" aria-hidden="true" />
-                <span className="text-slate-400">
+                <MapPin className="w-4 h-4 text-slate-400 dark:text-slate-500 shrink-0 mt-0.5" aria-hidden="true" />
+                <span className="text-slate-600 dark:text-slate-400">
                   {siteConfig.contact.location}
                 </span>
               </li>
@@ -145,14 +145,14 @@ export default function Footer() {
             </ul>
 
             {/* Trust / Policy Links */}
-            <div className="pt-4 border-t border-slate-700/60 space-y-2">
+            <div className="pt-4 border-t border-slate-200 dark:border-slate-700/60 space-y-2">
               <p className="text-[11px] font-semibold text-slate-500 uppercase tracking-wider">Policies</p>
               <ul className="space-y-1.5">
                 {trustLinks.map((link) => (
                   <li key={link.name}>
                     <a
                       href={link.href}
-                      className="text-slate-500 hover:text-slate-300 transition-colors text-[11px] flex items-center gap-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-royalBlue-400 rounded"
+                      className="text-slate-500 hover:text-slate-800 dark:hover:text-slate-300 transition-colors text-[11px] flex items-center gap-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-royalBlue-400 rounded"
                       target="_blank"
                       rel="noopener noreferrer"
                     >
@@ -168,7 +168,7 @@ export default function Footer() {
         </div>
 
         {/* Publication Disclaimer */}
-        <div className="py-6 border-t border-slate-800/80 border-b border-slate-800/50 mb-6">
+        <div className="py-6 border-t border-slate-200 dark:border-slate-800/80 border-b border-slate-200 dark:border-slate-800/50 mb-6">
           <p className="text-slate-500 text-[11px] leading-relaxed text-center max-w-4xl mx-auto">
             {disclaimerText}
           </p>
@@ -181,17 +181,17 @@ export default function Footer() {
           </p>
 
           <div className="flex items-center gap-4 text-slate-500">
-            <a href="/privacy-policy.html" target="_blank" rel="noopener noreferrer" className="hover:text-slate-300 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-royalBlue-400 rounded">
+            <a href="/privacy-policy.html" target="_blank" rel="noopener noreferrer" className="hover:text-slate-800 dark:hover:text-slate-300 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-royalBlue-400 rounded">
               Privacy
             </a>
             <span aria-hidden="true">•</span>
-            <a href="/terms.html" target="_blank" rel="noopener noreferrer" className="hover:text-slate-300 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-royalBlue-400 rounded">
+            <a href="/terms.html" target="_blank" rel="noopener noreferrer" className="hover:text-slate-800 dark:hover:text-slate-300 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-royalBlue-400 rounded">
               Terms
             </a>
             <span aria-hidden="true">•</span>
             <button
               onClick={scrollToTop}
-              className="flex items-center gap-1.5 text-softBlue-400 hover:text-softBlue-300 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-royalBlue-400 rounded"
+              className="flex items-center gap-1.5 text-royalBlue-600 hover:text-royalBlue-700 dark:text-softBlue-400 dark:hover:text-softBlue-300 hover:-translate-y-0.5 transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-royalBlue-400 rounded"
               aria-label="Back to top of page"
             >
               <span>Back to Top</span>

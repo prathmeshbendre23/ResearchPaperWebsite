@@ -112,7 +112,7 @@ export default function Hero() {
           className="lg:col-span-6 xl:col-span-6 flex flex-col justify-center text-center lg:text-left z-10 order-2 lg:order-1"
         >
           {/* Eyebrow badge */}
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-royalBlue-500/[0.08] border border-royalBlue-500/20 text-royalBlue-600 text-[11px] font-mono tracking-wide w-fit mx-auto lg:mx-0 mb-5">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-royalBlue-500/[0.08] dark:bg-royalBlue-500/18 border border-royalBlue-500/20 dark:border-royalBlue-400/30 text-royalBlue-600 dark:text-softBlue-400 text-[11px] font-mono tracking-wide w-fit mx-auto lg:mx-0 mb-5">
             <img
               src={siteConfig.logoPath}
               alt=""
@@ -123,35 +123,35 @@ export default function Hero() {
           </div>
 
           {/* Headline */}
-          <h1 className="font-display font-extrabold text-[32px] sm:text-[40px] lg:text-[44px] xl:text-[52px] tracking-tight text-navy-900 leading-[1.13] mb-4">
+          <h1 className="font-display font-extrabold text-[32px] sm:text-[40px] lg:text-[44px] xl:text-[52px] tracking-tight text-navy-900 dark:text-white leading-[1.13] mb-4">
             Research, Publication,{' '}
-            <span className="bg-gradient-to-r from-royalBlue-500 via-softBlue-500 to-violet-500 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-royalBlue-500 via-softBlue-500 to-violet-500 dark:from-royalBlue-400 dark:via-softBlue-400 dark:to-violet-400 bg-clip-text text-transparent">
               and Academic Support
             </span>
           </h1>
 
           {/* Supporting headline */}
-          <p className="text-[14px] sm:text-[15px] font-semibold text-navy-700 mb-4 leading-snug">
+          <p className="text-[14px] sm:text-[15px] font-semibold text-navy-700 dark:text-slate-200 mb-4 leading-snug">
             Rigorous Research. Ethical Publication Support. End-to-End Academic Expertise.
           </p>
 
           {/* Quality badges */}
           <div className="flex flex-wrap items-center justify-center lg:justify-start gap-2 mb-4">
-            <span className="inline-flex items-center px-3 py-1 rounded-lg text-[11px] font-semibold text-royalBlue-700 bg-royalBlue-500/[0.08] border border-royalBlue-500/18">
+            <span className="inline-flex items-center px-3 py-1 rounded-lg text-[11px] font-semibold text-royalBlue-700 dark:text-royalBlue-300 bg-royalBlue-500/[0.08] dark:bg-royalBlue-500/18 border border-royalBlue-500/18 dark:border-royalBlue-400/25">
               Rigorous Research
             </span>
-            <span className="text-navy-300 font-bold text-sm" aria-hidden="true">·</span>
-            <span className="inline-flex items-center px-3 py-1 rounded-lg text-[11px] font-semibold text-violet-700 bg-violet-500/[0.08] border border-violet-500/18">
+            <span className="text-navy-300 dark:text-slate-600 font-bold text-sm" aria-hidden="true">·</span>
+            <span className="inline-flex items-center px-3 py-1 rounded-lg text-[11px] font-semibold text-violet-700 dark:text-violet-300 bg-violet-500/[0.08] dark:bg-violet-500/18 border border-violet-500/18 dark:border-violet-400/25">
               Ethical Publication Support
             </span>
-            <span className="text-navy-300 font-bold text-sm" aria-hidden="true">·</span>
-            <span className="inline-flex items-center px-3 py-1 rounded-lg text-[11px] font-semibold text-emerald-700 bg-emerald-500/[0.08] border border-emerald-500/18">
+            <span className="text-navy-300 dark:text-slate-600 font-bold text-sm" aria-hidden="true">·</span>
+            <span className="inline-flex items-center px-3 py-1 rounded-lg text-[11px] font-semibold text-emerald-700 dark:text-emerald-300 bg-emerald-500/[0.08] dark:bg-emerald-500/18 border border-emerald-500/18 dark:border-emerald-400/25">
               End-to-End Academic Support
             </span>
           </div>
 
           {/* Description */}
-          <p className="text-sm sm:text-[15px] text-navy-600 max-w-[560px] mx-auto lg:mx-0 mb-7 leading-relaxed">
+          <p className="text-sm sm:text-[15px] text-navy-600 dark:text-slate-300 max-w-[560px] mx-auto lg:mx-0 mb-7 leading-relaxed">
             We support researchers, faculty members, scholars, and institutions across
             research design, methodology, manuscript development, journal selection,
             peer-review revisions, academic projects, patents, and scholarly publishing.
@@ -162,7 +162,7 @@ export default function Hero() {
             {/* PRIMARY: Request a Research Consultation */}
             <a
               href="#inquiry"
-              className="w-full sm:w-auto flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl font-semibold text-[13px] text-white bg-gradient-to-r from-royalBlue-500 to-violet-500 hover:from-royalBlue-400 hover:to-violet-400 shadow-[0_4px_20px_-2px_rgba(41,72,216,0.38)] hover:shadow-[0_6px_28px_-2px_rgba(41,72,216,0.50)] hover:-translate-y-0.5 transition-all duration-200 active:scale-95 focus:outline-none focus-visible:ring-2 focus-visible:ring-royalBlue-400"
+              className="w-full sm:w-auto flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl font-semibold text-[13px] text-white bg-gradient-to-r from-royalBlue-500 to-violet-500 hover:from-royalBlue-400 hover:to-violet-400 dark:from-royalBlue-600 dark:to-violet-600 dark:hover:from-royalBlue-500 dark:hover:to-violet-500 shadow-[0_4px_20px_-2px_rgba(41,72,216,0.38)] hover:shadow-[0_6px_28px_-2px_rgba(41,72,216,0.50)] hover:-translate-y-0.5 transition-all duration-200 active:scale-95 focus:outline-none focus-visible:ring-2 focus-visible:ring-royalBlue-400"
             >
               <span>Request a Research Consultation</span>
               <ArrowRight className="w-4 h-4" aria-hidden="true" />
@@ -171,9 +171,9 @@ export default function Hero() {
             {/* SECONDARY: Explore Our Services */}
             <a
               href="#services"
-              className="w-full sm:w-auto flex items-center justify-center gap-2 px-5 py-3.5 rounded-xl font-medium text-[13px] text-navy-700 bg-white/85 hover:bg-white border border-navy-200 hover:border-royalBlue-400/40 hover:-translate-y-0.5 hover:shadow-[0_4px_16px_-2px_rgba(11,27,74,0.12)] transition-all duration-200 backdrop-blur-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-royalBlue-400"
+              className="w-full sm:w-auto flex items-center justify-center gap-2 px-5 py-3.5 rounded-xl font-medium text-[13px] text-navy-700 dark:text-slate-200 bg-white/85 dark:bg-academic-900/85 hover:bg-white dark:hover:bg-academic-800 border border-navy-200 dark:border-navy-700 hover:border-royalBlue-400/40 dark:hover:border-royalBlue-400/50 hover:-translate-y-0.5 hover:shadow-[0_4px_16px_-2px_rgba(11,27,74,0.12)] dark:hover:shadow-[0_4px_20px_-2px_rgba(0,0,0,0.5)] transition-all duration-200 backdrop-blur-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-royalBlue-400"
             >
-              <BookOpen className="w-4 h-4 text-royalBlue-500" aria-hidden="true" />
+              <BookOpen className="w-4 h-4 text-royalBlue-500 dark:text-softBlue-400" aria-hidden="true" />
               <span>Explore Our Services</span>
             </a>
 
@@ -182,7 +182,7 @@ export default function Hero() {
               href={getWhatsAppUrl("Hello Brain & Pen, I would like to consult regarding research and publication support.")}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full sm:w-auto flex items-center justify-center gap-2 px-4 py-3.5 rounded-xl font-medium text-[13px] text-emerald-700 bg-emerald-50 hover:bg-emerald-100 border border-emerald-200 hover:border-emerald-300 hover:-translate-y-0.5 transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
+              className="w-full sm:w-auto flex items-center justify-center gap-2 px-4 py-3.5 rounded-xl font-medium text-[13px] text-emerald-700 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/40 hover:bg-emerald-100 dark:hover:bg-emerald-900/50 border border-emerald-200 dark:border-emerald-800/70 hover:border-emerald-300 dark:hover:border-emerald-700 hover:-translate-y-0.5 transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
               title="Chat with us on WhatsApp"
             >
               <MessageCircle className="w-4 h-4" aria-hidden="true" />
@@ -225,11 +225,10 @@ export default function Hero() {
 
           {/* Floating overlay card — Research Support Lifecycle (desktop only) */}
           <div
-            className="hidden xl:block absolute bottom-4 -left-4 z-20 w-[300px] rounded-2xl bg-white/92 border border-navy-200/70 p-4 shadow-card-light backdrop-blur-md"
-            style={{ boxShadow: '0 8px 32px -8px rgba(11,27,74,0.12)' }}
+            className="hidden xl:block absolute bottom-4 -left-4 z-20 w-[300px] rounded-2xl bg-white/92 dark:bg-academic-900/90 border border-navy-200/70 dark:border-navy-700/70 p-4 shadow-card-light dark:shadow-[0_8px_32px_-8px_rgba(0,0,0,0.6)] backdrop-blur-md"
           >
-            <div className="flex items-center justify-between pb-2.5 mb-2.5 border-b border-navy-100">
-              <span className="text-[10px] font-mono font-bold text-royalBlue-600 tracking-wider uppercase">
+            <div className="flex items-center justify-between pb-2.5 mb-2.5 border-b border-navy-100 dark:border-navy-800">
+              <span className="text-[10px] font-mono font-bold text-royalBlue-600 dark:text-softBlue-400 tracking-wider uppercase">
                 Research Support Lifecycle
               </span>
               <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" aria-hidden="true" />
@@ -237,14 +236,14 @@ export default function Hero() {
             <div className="space-y-2">
               {researchLifecycleData.map((item) => (
                 <div key={item.step} className="flex items-start gap-2.5 text-left">
-                  <span className="w-5 h-5 rounded-md bg-royalBlue-500/10 border border-royalBlue-500/18 text-royalBlue-600 font-mono text-[9.5px] font-bold flex items-center justify-center shrink-0">
+                  <span className="w-5 h-5 rounded-md bg-royalBlue-500/10 dark:bg-royalBlue-400/20 border border-royalBlue-500/18 dark:border-royalBlue-400/30 text-royalBlue-600 dark:text-softBlue-400 font-mono text-[9.5px] font-bold flex items-center justify-center shrink-0">
                     {item.step}
                   </span>
                   <div>
-                    <h4 className="text-[11px] font-semibold text-navy-800 leading-none">
+                    <h4 className="text-[11px] font-semibold text-navy-800 dark:text-slate-100 leading-none">
                       {item.title}
                     </h4>
-                    <p className="text-[10px] text-navy-400 leading-tight mt-0.5 line-clamp-1">
+                    <p className="text-[10px] text-navy-400 dark:text-slate-400 leading-tight mt-0.5 line-clamp-1">
                       {item.description}
                     </p>
                   </div>
@@ -256,9 +255,9 @@ export default function Hero() {
       </SectionContainer>
 
       {/* Trust Strip */}
-      <div className="mt-8 border-y border-navy-200/50 bg-white/72 backdrop-blur-sm relative z-10 w-full py-4">
+      <div className="mt-8 border-y border-navy-200/50 dark:border-navy-800/80 bg-white/72 dark:bg-academic-950/75 backdrop-blur-sm relative z-10 w-full py-4">
         <SectionContainer>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 divide-y sm:divide-y-0 sm:divide-x divide-navy-200/40">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 divide-y sm:divide-y-0 sm:divide-x divide-navy-200/40 dark:divide-navy-800/60">
             {[
               {
                 title: 'Researchers & Faculty',
@@ -278,10 +277,10 @@ export default function Hero() {
               },
             ].map((item, i) => (
               <div key={i} className={`${i > 0 ? 'pt-3 sm:pt-0 sm:pl-5' : ''}`}>
-                <strong className="block text-navy-900 text-[12px] sm:text-[13px] font-semibold">
+                <strong className="block text-navy-900 dark:text-slate-100 text-[12px] sm:text-[13px] font-semibold">
                   {item.title}
                 </strong>
-                <span className="block text-navy-500 text-[11px] mt-0.5 leading-snug">
+                <span className="block text-navy-500 dark:text-slate-400 text-[11px] mt-0.5 leading-snug">
                   {item.desc}
                 </span>
               </div>
@@ -293,13 +292,13 @@ export default function Hero() {
       {/* Scroll indicator */}
       <a
         href="#about"
-        className="mt-5 mx-auto z-20 flex flex-col items-center gap-1 text-[11px] text-navy-400 hover:text-royalBlue-500 transition-colors cursor-pointer group focus:outline-none focus-visible:ring-2 focus-visible:ring-royalBlue-500 rounded"
+        className="mt-5 mx-auto z-20 flex flex-col items-center gap-1 text-[11px] text-navy-400 dark:text-slate-400 hover:text-royalBlue-500 dark:hover:text-softBlue-400 transition-colors cursor-pointer group focus:outline-none focus-visible:ring-2 focus-visible:ring-royalBlue-500 rounded"
         aria-label="Scroll down to learn about Brain & Pen"
       >
         <span className="font-mono text-[9.5px] tracking-widest uppercase opacity-70 group-hover:opacity-100 transition-opacity">
           Learn More
         </span>
-        <ChevronDown className="w-4 h-4 text-royalBlue-400/70 animate-bounce" aria-hidden="true" />
+        <ChevronDown className="w-4 h-4 text-royalBlue-400/70 dark:text-softBlue-400/70 animate-bounce" aria-hidden="true" />
       </a>
     </section>
   );

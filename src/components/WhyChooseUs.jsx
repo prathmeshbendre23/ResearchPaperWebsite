@@ -15,9 +15,9 @@ const iconMap = {
 export default function WhyChooseUs() {
   return (
     <section
-      className="py-24 relative overflow-hidden w-full"
+      id="why-choose-us"
+      className="py-24 relative overflow-hidden w-full section-lavender"
       aria-label="Professional Research Practice"
-      style={{ background: 'rgba(237,233,255,0.22)' }}
     >
       {/* Soft violet orbital glow */}
       <div
@@ -55,15 +55,15 @@ export default function WhyChooseUs() {
                 className="academic-card p-6 sm:p-7 rounded-2xl group flex flex-col justify-between"
               >
                 <div>
-                  <div className="w-11 h-11 rounded-xl bg-violet-500/8 border border-violet-500/18 flex items-center justify-center text-violet-600 mb-5 group-hover:scale-105 group-hover:bg-violet-500/15 transition-all">
+                  <div className="w-11 h-11 rounded-xl bg-violet-500/8 dark:bg-violet-500/18 border border-violet-500/18 dark:border-violet-400/30 flex items-center justify-center text-violet-600 dark:text-violet-400 mb-5 group-hover:scale-105 group-hover:bg-violet-500/15 dark:group-hover:bg-violet-500/25 transition-all">
                     <IconComponent className="w-5 h-5" />
                   </div>
 
-                  <h3 className="font-display font-semibold text-lg text-navy-900 mb-2.5 group-hover:text-violet-600 transition-colors">
+                  <h3 className="font-display font-semibold text-lg text-navy-900 dark:text-white mb-2.5 group-hover:text-violet-600 dark:group-hover:text-violet-400 transition-colors">
                     {item.title}
                   </h3>
 
-                  <p className="text-navy-600 text-xs sm:text-sm leading-relaxed">
+                  <p className="text-navy-600 dark:text-slate-300 text-xs sm:text-sm leading-relaxed">
                     {item.description}
                   </p>
                 </div>

@@ -73,29 +73,29 @@ export default function Services() {
                 <div>
                   <div className="flex items-center justify-between mb-5">
                     <div
-                      className="w-11 h-11 rounded-xl bg-royalBlue-500/8 border border-royalBlue-500/20 flex items-center justify-center text-royalBlue-500 group-hover:scale-105 group-hover:bg-royalBlue-500/15 transition-all"
+                      className="w-11 h-11 rounded-xl bg-royalBlue-500/8 dark:bg-royalBlue-500/15 border border-royalBlue-500/20 dark:border-royalBlue-400/30 flex items-center justify-center text-royalBlue-500 dark:text-softBlue-400 group-hover:scale-105 group-hover:bg-royalBlue-500/15 dark:group-hover:bg-royalBlue-500/25 transition-all"
                       aria-hidden="true"
                     >
                       <IconComponent className="w-5 h-5" />
                     </div>
-                    <span className="font-mono text-xs font-bold text-royalBlue-600 tracking-wider">
+                    <span className="font-mono text-xs font-bold text-royalBlue-600 dark:text-softBlue-400 tracking-wider">
                       {service.kicker}
                     </span>
                   </div>
 
                   {/* Title & Description */}
-                  <h3 className="font-display font-semibold text-lg text-navy-900 group-hover:text-royalBlue-600 transition-colors mb-2.5 leading-snug">
+                  <h3 className="font-display font-semibold text-lg text-navy-900 dark:text-white group-hover:text-royalBlue-600 dark:group-hover:text-softBlue-400 transition-colors mb-2.5 leading-snug">
                     {service.title}
                   </h3>
-                  <p className="text-navy-600 text-xs sm:text-sm leading-relaxed mb-5">
+                  <p className="text-navy-600 dark:text-slate-300 text-xs sm:text-sm leading-relaxed mb-5">
                     {service.description}
                   </p>
 
                   {/* Highlights */}
-                  <ul className="space-y-2 mb-6 pt-4 border-t border-navy-100" aria-label={`${service.title} highlights`}>
+                  <ul className="space-y-2 mb-6 pt-4 border-t border-navy-100 dark:border-navy-800" aria-label={`${service.title} highlights`}>
                     {service.highlights.map((highlight, hIdx) => (
-                      <li key={hIdx} className="flex items-start gap-2.5 text-xs text-navy-600">
-                        <Check className="w-3.5 h-3.5 text-royalBlue-500 shrink-0 mt-0.5" aria-hidden="true" />
+                      <li key={hIdx} className="flex items-start gap-2.5 text-xs text-navy-600 dark:text-slate-300">
+                        <Check className="w-3.5 h-3.5 text-royalBlue-500 dark:text-softBlue-400 shrink-0 mt-0.5" aria-hidden="true" />
                         <span>{highlight}</span>
                       </li>
                     ))}
@@ -105,7 +105,7 @@ export default function Services() {
                 {/* Bottom CTA */}
                 <a
                   href="#inquiry"
-                  className="inline-flex items-center justify-between w-full py-2.5 px-3.5 rounded-lg text-xs font-medium text-navy-700 group-hover:text-royalBlue-600 bg-pearl-200/60 hover:bg-royalBlue-500/8 border border-navy-200 group-hover:border-royalBlue-500/28 transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-royalBlue-500"
+                  className="inline-flex items-center justify-between w-full py-2.5 px-3.5 rounded-lg text-xs font-medium text-navy-700 dark:text-slate-200 group-hover:text-royalBlue-600 dark:group-hover:text-softBlue-300 bg-pearl-200/60 dark:bg-academic-950/60 hover:bg-royalBlue-500/8 dark:hover:bg-royalBlue-500/20 border border-navy-200 dark:border-navy-700/80 group-hover:border-royalBlue-500/28 dark:group-hover:border-royalBlue-400/40 hover:-translate-y-0.5 transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-royalBlue-500"
                   aria-label={`Request a consultation about ${service.title}`}
                 >
                   <span>Discuss Your Research</span>
@@ -117,10 +117,10 @@ export default function Services() {
         </div>
 
         {/* Publisher / Indexing Brand Safety Notice */}
-        <div className="mt-12 p-4 rounded-xl bg-navy-50/60 border border-navy-200/60 text-center">
-          <p className="text-[11.5px] text-navy-500 leading-relaxed max-w-3xl mx-auto">
+        <div className="mt-12 p-4 rounded-xl bg-navy-50/60 dark:bg-academic-900/60 border border-navy-200/60 dark:border-navy-800/80 text-center">
+          <p className="text-[11.5px] text-navy-500 dark:text-slate-400 leading-relaxed max-w-3xl mx-auto">
             Publication formats and journals supported include Scopus, Web of Science (SCI/SCIE), IEEE, Springer, Elsevier, Wiley, Taylor &amp; Francis, and MDPI — among others.{' '}
-            <span className="text-navy-400">
+            <span className="text-navy-400 dark:text-slate-500">
               Brain &amp; Pen Research Services is an independent research consultancy and is not affiliated with or endorsed by individual journal publishers or indexing databases unless expressly stated.
             </span>
           </p>
