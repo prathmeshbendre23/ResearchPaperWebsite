@@ -178,19 +178,19 @@ export default function Navbar() {
           </div>
 
           {/* Mobile Actions: Theme Toggle + WhatsApp + Hamburger */}
-          <div className="flex items-center gap-1.5 sm:gap-2 xl:hidden shrink-0">
+          <div className="flex items-center gap-[7px] xl:hidden shrink-0">
             {/* Mobile Theme Toggle Button */}
             <button
               type="button"
               onClick={toggleTheme}
-              className="p-2 text-slate-800 dark:text-slate-100 hover:text-navy-950 dark:hover:text-white rounded-xl border border-slate-200 dark:border-navy-700 hover:border-slate-300 dark:hover:border-navy-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-royalBlue-500 bg-white dark:bg-academic-900 shadow-xs transition-all"
+              className="w-[42px] h-[42px] flex items-center justify-center p-0 text-slate-800 dark:text-slate-100 hover:text-navy-950 dark:hover:text-white rounded-xl border border-slate-200 dark:border-navy-700 hover:border-slate-300 dark:hover:border-navy-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-royalBlue-500 bg-white dark:bg-academic-900 shadow-xs transition-all shrink-0"
               aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
               title={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
             >
               {theme === 'dark' ? (
-                <Sun className="w-4.5 h-4.5 text-amber-400" aria-hidden="true" />
+                <Sun className="w-[21px] h-[21px] text-amber-400" aria-hidden="true" />
               ) : (
-                <Moon className="w-4.5 h-4.5 text-slate-700" aria-hidden="true" />
+                <Moon className="w-[21px] h-[21px] text-slate-700" aria-hidden="true" />
               )}
             </button>
 
@@ -198,21 +198,21 @@ export default function Navbar() {
               href={getWhatsAppUrl()}
               target="_blank"
               rel="noopener noreferrer"
-              className="p-2 text-emerald-700 dark:text-emerald-400 hover:text-emerald-800 sm:hidden rounded-lg bg-emerald-500/10 dark:bg-emerald-950/40 border border-emerald-600/30 dark:border-emerald-800/70 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 shadow-xs"
+              className="w-[42px] h-[42px] flex items-center justify-center p-0 text-emerald-700 dark:text-emerald-400 hover:text-emerald-800 sm:hidden rounded-lg bg-emerald-500/10 dark:bg-emerald-950/40 border border-emerald-600/30 dark:border-emerald-800/70 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 shadow-xs shrink-0"
               aria-label="WhatsApp"
             >
-              <MessageCircle className="w-4.5 h-4.5 stroke-[2.2]" aria-hidden="true" />
+              <MessageCircle className="w-[21px] h-[21px] stroke-[2.2]" aria-hidden="true" />
             </a>
 
             <button
               type="button"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 text-slate-800 dark:text-slate-100 hover:text-navy-950 dark:hover:text-white rounded-xl border border-slate-200 dark:border-navy-700 hover:border-slate-300 dark:hover:border-navy-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-royalBlue-500 bg-white dark:bg-academic-900 shadow-xs transition-all"
+              className="w-[42px] h-[42px] flex items-center justify-center p-0 text-slate-800 dark:text-slate-100 hover:text-navy-950 dark:hover:text-white rounded-xl border border-slate-200 dark:border-navy-700 hover:border-slate-300 dark:hover:border-navy-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-royalBlue-500 bg-white dark:bg-academic-900 shadow-xs transition-all shrink-0"
               aria-expanded={mobileMenuOpen}
               aria-label={mobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
               aria-controls="mobile-nav"
             >
-              {mobileMenuOpen ? <X className="w-5 h-5" aria-hidden="true" /> : <Menu className="w-5 h-5" aria-hidden="true" />}
+              {mobileMenuOpen ? <X className="w-[21px] h-[21px]" aria-hidden="true" /> : <Menu className="w-[21px] h-[21px]" aria-hidden="true" />}
             </button>
           </div>
         </div>
