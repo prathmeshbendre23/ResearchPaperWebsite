@@ -704,3 +704,22 @@ input:focus, select:focus, textarea:focus {
   .orbital-ring-3 { display: none; }
 }
 
+/* ═══════════════════════════════════════════════════════════════════
+   MOBILE NAVIGATION DRAWER — 100% Solid & Completely Opaque Layering
+   Guarantees zero background content bleed-through in both light & dark modes
+═══════════════════════════════════════════════════════════════════ */
+#mobile-nav {
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  opacity: 1 !important;
+}
+
+html:not(.dark) #mobile-nav {
+  background-color: #FFFFFF !important;
+}
+
+html.dark #mobile-nav {
+  background-color: #0B1220 !important;
+}
+
+
