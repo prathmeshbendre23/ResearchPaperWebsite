@@ -59,28 +59,27 @@ export default function Navbar() {
       <div
         className="w-full h-full flex items-center justify-between"
         style={{
-          paddingLeft: 'clamp(16px, 2.5vw, 44px)',
-          paddingRight: 'clamp(16px, 2.5vw, 44px)',
+          paddingLeft: 'clamp(12px, 2.5vw, 44px)',
+          paddingRight: 'clamp(12px, 2.5vw, 44px)',
         }}
       >
         {/* LEFT: Brand Logo */}
         <a
           href="#home"
-          className="flex items-center gap-3 group focus:outline-none focus-visible:ring-2 focus-visible:ring-royalBlue-500 rounded-lg shrink-0"
+          className="flex items-center gap-2.5 sm:gap-3 group focus:outline-none focus-visible:ring-2 focus-visible:ring-royalBlue-500 rounded-lg shrink-0"
           aria-label={siteConfig.brandFullName}
         >
           <div className="flex items-center justify-center group-hover:scale-[1.04] transition-all shrink-0">
             <img
               src={siteConfig.logoPath}
-              alt="Brain & Pen Research Services"
-              className="object-contain drop-shadow-sm"
-              style={{ width: '42px', height: '42px' }}
+              alt={siteConfig.brandFullName}
+              className="object-contain drop-shadow-sm w-9 h-9 sm:w-[42px] sm:h-[42px]"
               width="42"
               height="42"
             />
           </div>
           <div className="flex flex-col leading-none">
-            <span className="font-display font-bold text-[16.5px] sm:text-[17.5px] text-navy-950 dark:text-white tracking-tight group-hover:text-royalBlue-600 dark:group-hover:text-softBlue-400 transition-colors">
+            <span className="font-display font-bold text-[13px] min-[380px]:text-[14.5px] sm:text-[17.5px] text-navy-950 dark:text-white tracking-tight group-hover:text-royalBlue-600 dark:group-hover:text-softBlue-400 transition-colors whitespace-nowrap">
               {siteConfig.brandName}
             </span>
             <span className="text-[9.5px] font-mono text-navy-400 dark:text-slate-400 tracking-wider uppercase hidden sm:inline-block mt-0.5">
@@ -91,7 +90,7 @@ export default function Navbar() {
 
         {/* CENTER: Main Desktop Navigation */}
         <nav
-          className="hidden xl:flex items-center gap-0.5 2xl:gap-1 mx-6 2xl:mx-10"
+          className="hidden xl:flex items-center gap-0.5 2xl:gap-1 mx-3 2xl:mx-8"
           aria-label="Main Navigation"
         >
           {centerNavLinks.map((item) => {
@@ -100,7 +99,7 @@ export default function Navbar() {
               <a
                 key={item.name}
                 href={item.href}
-                className={`relative px-3 py-2 rounded-lg text-[12px] 2xl:text-[13px] font-medium whitespace-nowrap transition-all duration-200 ease-out focus:outline-none focus-visible:ring-2 focus-visible:ring-royalBlue-500 ${isActive
+                className={`relative px-2.5 2xl:px-3 py-2 rounded-lg text-[12px] 2xl:text-[13px] font-medium whitespace-nowrap transition-all duration-200 ease-out focus:outline-none focus-visible:ring-2 focus-visible:ring-royalBlue-500 ${isActive
                   ? 'text-royalBlue-600 dark:text-softBlue-400 font-semibold bg-royalBlue-500/[0.08] dark:bg-royalBlue-500/18'
                   : 'text-navy-700 dark:text-slate-300 hover:text-royalBlue-600 dark:hover:text-white hover:bg-royalBlue-500/[0.05] dark:hover:bg-white/[0.06]'
                   }`}
@@ -156,7 +155,7 @@ export default function Navbar() {
         </div>
 
         {/* Mobile Actions: Theme Toggle + WhatsApp + Hamburger */}
-        <div className="flex items-center gap-1.5 sm:gap-2 xl:hidden">
+        <div className="flex items-center gap-1 sm:gap-2 xl:hidden shrink-0">
           {/* Mobile Theme Toggle Button */}
           <button
             type="button"

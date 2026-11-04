@@ -37,7 +37,7 @@ export default function ResearcherNetwork() {
         />
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
-          
+
           {/* Main Group Support Card (7 cols) */}
           <motion.div
             initial={{ opacity: 0, y: 25 }}

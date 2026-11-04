@@ -4,10 +4,10 @@
  */
 
 export const siteConfig = {
-  brandName: "Brain & Pen",
+  brandName: "Brain & Pen Research Services",
   brandFullName: "Brain & Pen Research Services",
   brandSubtitle: "Research, Publication & Academic Support",
-  brandTagline: "Rigorous Research • Ethical Publication Support • End-to-End Academic Support",
+  brandTagline: "Rigorous Research • Ethical Publication Support ",
 
   // Logo asset path
   logoPath: "/assets/brain-and-pen-logo.png",
@@ -23,7 +23,7 @@ export const siteConfig = {
 
     // WhatsApp configuration (International format without + or spaces)
     whatsappNumber: "917666748752",
-    whatsappCommunityGroup: "https://chat.whatsapp.com/CnP9rBQHmhjAdrtZQ0aB7D",
+    whatsappCommunityGroup: "https://chat.whatsapp.com/DCxWKp6dqZY7LzMjcuB3Ii?s=cl&p=a&iam=2",
     whatsappDefaultMessage: "Hello Brain & Pen, I would like to discuss my research and academic support requirement.",
 
     officeHours: "Monday – Saturday: 9:00 AM – 7:00 PM IST",

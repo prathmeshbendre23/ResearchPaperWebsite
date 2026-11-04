@@ -55,7 +55,7 @@ export default function CTA() {
 
           {/* Description */}
           <p className="text-white/80 text-sm sm:text-base lg:text-lg max-w-2xl mx-auto mb-9 leading-relaxed font-normal">
-            Take the next step toward developing and publishing your research with professional guidance. Connect with Brain &amp; Pen to evaluate your manuscript, thesis, patent, or institutional research initiative.
+            Take the next step toward developing and publishing your research with professional guidance. Connect with Brain &amp; Pen Research Services to evaluate your manuscript, thesis, patent, or institutional research initiative.
           </p>
 
           {/* Action Buttons */}

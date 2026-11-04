@@ -44,7 +44,7 @@ export default function Footer() {
             >
               <img
                 src={siteConfig.logoPath}
-                alt="Brain & Pen Research Services"
+                alt={siteConfig.brandFullName}
                 className="object-contain"
                 style={{ width: '36px', height: '36px' }}
                 width="36"
@@ -60,7 +60,7 @@ export default function Footer() {
             </p>
 
             <p className="text-slate-600 dark:text-slate-400 leading-relaxed text-xs sm:text-sm">
-              A research and scholarly publication consultancy supporting researchers, faculty, and institutions across research design, manuscript development, journal selection, revision, thesis, patents, and academic collaboration.
+              Supporting researchers and institutions with research design, manuscript development, journal selection, thesis, publication, and academic collaboration.
             </p>
 
             <div className="pt-2">

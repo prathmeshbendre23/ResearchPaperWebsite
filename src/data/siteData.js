@@ -323,7 +323,7 @@ export const researcherNetworkData = {
     label: "JOIN THE COMMUNITY",
     title: "Connect with researchers, opportunities and updates",
     description: "Join the Brain & Pen research community for publication information, research opportunities, FDP and STTP updates, academic calls and collaboration discussions.",
-    whatsappGroupUrl: "https://chat.whatsapp.com/CnP9rBQHmhjAdrtZQ0aB7D",
+    whatsappGroupUrl: "https://chat.whatsapp.com/DCxWKp6dqZY7LzMjcuB3Ii?s=cl&p=a&iam=2",
     directContactNumber: "+91 7666748752",
     directContactTel: "tel:+917666748752",
   },

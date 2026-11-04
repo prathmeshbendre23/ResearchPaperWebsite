@@ -293,7 +293,7 @@ export default function Hero() {
       <a
         href="#about"
         className="mt-5 mx-auto z-20 flex flex-col items-center gap-1 text-[11px] text-navy-400 dark:text-slate-400 hover:text-royalBlue-500 dark:hover:text-softBlue-400 transition-colors cursor-pointer group focus:outline-none focus-visible:ring-2 focus-visible:ring-royalBlue-500 rounded"
-        aria-label="Scroll down to learn about Brain & Pen"
+        aria-label="Scroll down to learn about Brain & Pen Research Services"
       >
         <span className="font-mono text-[9.5px] tracking-widest uppercase opacity-70 group-hover:opacity-100 transition-opacity">
           Learn More

@@ -57,7 +57,7 @@ export default function About() {
           >
             <div className="inline-flex items-center gap-2 text-xs font-mono text-royalBlue-600 dark:text-softBlue-400 tracking-wider uppercase mb-3">
               <span className="w-2 h-2 rounded-full bg-royalBlue-500 dark:bg-softBlue-400" />
-              About Brain &amp; Pen
+              About Brain &amp; Pen Research Services
             </div>
 
             <h2 className="font-display font-bold text-3xl sm:text-4xl text-navy-900 dark:text-white tracking-tight leading-tight mb-5">
@@ -132,12 +132,12 @@ export default function About() {
           >
             <div className="relative rounded-2xl bg-white/90 dark:bg-academic-900/90 border border-navy-200/80 dark:border-navy-700/80 p-6 sm:p-7 shadow-card-light dark:shadow-[0_8px_32px_-8px_rgba(0,0,0,0.5)] backdrop-blur-md">
               {/* Top Bar */}
-              <div className="flex items-center justify-between border-b border-navy-100 dark:border-navy-800 pb-4 mb-5">
+              <div className="flex flex-wrap items-center justify-between gap-2 border-b border-navy-100 dark:border-navy-800 pb-4 mb-5">
                 <div className="flex items-center gap-2">
                   <span className="w-2.5 h-2.5 rounded-full bg-royalBlue-500 dark:bg-softBlue-400 animate-pulse" />
                   <span className="text-xs font-mono font-semibold text-navy-800 dark:text-slate-200">RESEARCH QUALITY FRAMEWORK</span>
                 </div>
-                <span className="text-[11px] font-mono text-royalBlue-600 dark:text-softBlue-400 font-bold">BRAIN &amp; PEN</span>
+                <span className="text-[11px] font-mono text-royalBlue-600 dark:text-softBlue-400 font-bold">BRAIN &amp; PEN RESEARCH SERVICES</span>
               </div>
 
               {/* Interactive Tabs */}
