@@ -177,33 +177,24 @@ export default function Navbar() {
             </a>
           </div>
 
-          {/* Mobile Actions: Theme Toggle + WhatsApp + Hamburger */}
-          <div className="flex items-center gap-[7px] xl:hidden shrink-0">
-            {/* Mobile Theme Toggle Button */}
+          {/* Mobile Actions: Unboxed Theme Toggle + Hamburger Menu */}
+          <div className="flex items-center gap-1.5 sm:gap-2 xl:hidden shrink-0">
+            {/* Mobile Theme Toggle Button - Unboxed Icon */}
             <button
               type="button"
               onClick={toggleTheme}
-              className="w-[42px] h-[42px] flex items-center justify-center p-0 text-slate-800 dark:text-slate-100 hover:text-navy-950 dark:hover:text-white rounded-xl border border-slate-200 dark:border-navy-700 hover:border-slate-300 dark:hover:border-navy-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-royalBlue-500 bg-white dark:bg-academic-900 shadow-xs transition-all shrink-0"
+              className="p-1.5 text-slate-700 dark:text-slate-200 hover:text-royalBlue-600 dark:hover:text-amber-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-royalBlue-500 bg-transparent border-0 shadow-none transition-colors flex items-center justify-center shrink-0 cursor-pointer"
               aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
               title={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
             >
               {theme === 'dark' ? (
-                <Sun className="w-[21px] h-[21px] text-amber-400" aria-hidden="true" />
+                <Sun className="w-[21px] h-[21px] text-amber-400 transition-transform duration-300 hover:rotate-45" aria-hidden="true" />
               ) : (
-                <Moon className="w-[21px] h-[21px] text-slate-700" aria-hidden="true" />
+                <Moon className="w-[21px] h-[21px] text-slate-700 transition-transform duration-300 hover:-rotate-12" aria-hidden="true" />
               )}
             </button>
 
-            <a
-              href={getWhatsAppUrl()}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-[42px] h-[42px] flex items-center justify-center p-0 text-emerald-700 dark:text-emerald-400 hover:text-emerald-800 sm:hidden rounded-lg bg-emerald-500/10 dark:bg-emerald-950/40 border border-emerald-600/30 dark:border-emerald-800/70 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 shadow-xs shrink-0"
-              aria-label="WhatsApp"
-            >
-              <MessageCircle className="w-[21px] h-[21px] stroke-[2.2]" aria-hidden="true" />
-            </a>
-
+            {/* Hamburger Menu Button */}
             <button
               type="button"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
