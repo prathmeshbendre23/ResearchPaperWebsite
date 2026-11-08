@@ -15,7 +15,7 @@ export const siteConfig = {
   // Contact Information
   contact: {
     // PLACEHOLDER: Replace this placeholder with the official Brain & Pen email address before production launch
-    email: "editor@brain-pen-research.co.in",
+    email: "editor@brain-pen-research.co.in / brainandpen05@gmail.com ",
     isPlaceholderEmail: true,
 
     phone: "+91 7666748752",
